@@ -1,0 +1,37 @@
+{
+  "id": "dnd5e-2024-wizard-schools",
+  "title": "D&D5e 2024 - Escuelas de Mago",
+  "description": "Añade escuelas de mago de 2014 adaptadas a la progresión 2024. Versión de prueba: Conjurador.",
+  "version": "1.14.0",
+  "authors": [
+    {
+      "name": "foundryvtt-sinregistrar"
+    }
+  ],
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14.363"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "5.2",
+          "verified": "5.2"
+        }
+      }
+    ]
+  },
+  "languages": [
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json"
+    }
+  ],
+  "esmodules": [
+    "scripts/main.mjs"
+  ]
+}
