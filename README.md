@@ -29,7 +29,7 @@ C:\docker\foundryvtt\foundryvtt-14.363-B\data\Data\modules\
 
 3. Reinicia Foundry VTT.
 4. Activa **D&D5e 2024 - Escuelas de Mago** en el mundo.
-5. En el primer arranque como GM se crea/sincroniza el compendio de mundo:
+5. El módulo registra automáticamente su compendio nativo:
 
 ```text
 D&D 2024 - Escuelas de Mago
@@ -44,7 +44,11 @@ Crea un personaje nuevo y añade la clase **Mago 2024**.
 - Selecciona una y verifica que recibe sus dos rasgos de nivel 3.
 - Sube a 6, 10 y 14 y comprueba los `ItemGrant`.
 
-Si las subclases no aparecen en el selector, abre el navegador de compendios de D&D5e, entra en la configuración de **Fuentes** y verifica que el compendio de mundo del módulo no esté excluido.
+Si las subclases no aparecen en el selector, abre el navegador de compendios de D&D5e, entra en la configuración de **Fuentes** y verifica que el compendio del módulo no esté excluido.
+
+## Actualización desde 1.14.1
+
+La versión 1.15.0 sustituye el antiguo compendio de mundo por `dnd5e-2024-wizard-schools.classes24`. Al entrar como GM, el módulo detecta el compendio legado y ofrece eliminarlo para que las subclases no aparezcan duplicadas. Los rasgos ya concedidos a personajes no se eliminan.
 
 ## Automatización
 
@@ -86,6 +90,8 @@ dnd5e-2024-wizard-schools/
 │  └─ es.json
 ├─ scripts/
 │  └─ main.mjs
+├─ packs/
+│  └─ classes24/
 └─ data/
    ├─ common.mjs
    ├─ conjurer.mjs

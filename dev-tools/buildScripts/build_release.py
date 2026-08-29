@@ -8,8 +8,11 @@ version = manifest["version"]
 dist = ROOT / "dist"
 dist.mkdir(exist_ok=True)
 
-exclude_parts = {"dist", ".git", ".github", ".idea", ".vscode", "__pycache__"}
-exclude_files = {"staged.txt"}
+exclude_parts = {
+    "dist", ".git", ".github", ".idea", ".vscode", "__pycache__",
+    "dev-tools", "node_modules", ".tmp-npm-cache", ".tmp-pack-tools"
+}
+exclude_files = {"staged.txt", "package.json", "package-lock.json"}
 files = [
     p for p in ROOT.rglob("*")
     if p.is_file()

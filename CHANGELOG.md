@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.15.0 - 2026-08-29
+
+- Sustituido el compendio de mundo por el pack nativo `dnd5e-2024-wizard-schools.classes24`.
+- Actualizados todos los `ItemGrant` para usar UUID del módulo.
+- Incluidos los 24 Items en `packs/classes24` con IDs estables.
+- Eliminado el instalador y sincronizador de contenido de mundo.
+- Añadida una migración confirmada por el GM para retirar el compendio legado y evitar duplicados.
+- Añadidos scripts reproducibles de generación y validación del pack.
+
 ## 1.14.1 - 2026-08-29
 
 - Añadidos **Encantador**, **Nigromante** y **Transmutador**.

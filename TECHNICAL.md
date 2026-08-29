@@ -8,7 +8,7 @@
 
 ## Arquitectura
 
-El módulo crea un compendio de mundo de Items y sincroniza en él 24 documentos administrados por el módulo:
+El módulo distribuye un compendio nativo de Items, `dnd5e-2024-wizard-schools.classes24`, con 24 documentos:
 
 - 4 Items `subclass`.
 - 20 Items `feat`.
@@ -21,14 +21,21 @@ Cada subclase usa `ItemGrant` en 3 / 6 / 10 / 14.
 
 Todos los `_id` del contenido son propios, estables, alfanuméricos y de 16 caracteres. Los IDs del Conjurador de 1.14.0 se conservan para que una actualización no rompa los UUID ya existentes.
 
-## Sincronización
+## Generación y validación
 
-`CONTENT_VERSION` controla cuándo actualizar documentos administrados existentes. El instalador:
+Los ficheros de `data/` son la fuente canónica. El pack LevelDB se genera y valida con:
 
-1. crea el compendio de mundo si no existe;
-2. crea Items que falten conservando sus IDs;
-3. actualiza Items administrados cuya versión interna haya cambiado;
-4. no modifica documentos ajenos al módulo.
+```text
+npm install
+npm run build:pack
+npm run validate
+```
+
+El validador comprueba cantidad, unicidad y formato de IDs, destinos de `ItemGrant`, UUID nativos y correspondencia entre los datos fuente y el pack.
+
+## Migración desde 1.14.1
+
+El script de arranque ya no crea ni sincroniza contenido. Solo detecta `world.dnd5e-2024-wizard-schools` y pide confirmación al GM para eliminar el compendio legado, evitando resultados duplicados sin borrar datos silenciosamente.
 
 ## Decisiones de automatización
 

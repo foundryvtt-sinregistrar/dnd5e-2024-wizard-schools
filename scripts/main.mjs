@@ -1,17 +1,11 @@
-import {
-  MODULE_ID,
-  CONTENT_VERSION,
-  PACK_NAME,
-  PACK_LABEL,
-  PACK_COLLECTION,
-  CONTENT_ITEMS
-} from "../data/index.mjs";
+import { MODULE_ID } from "../data/index.mjs";
 
-const SETTING_CONTENT_VERSION = "installedContentVersion";
+const LEGACY_PACK_COLLECTION = "world.dnd5e-2024-wizard-schools";
+const LEGACY_MIGRATION_SETTING = "legacyPackMigration";
 
 Hooks.once("init", () => {
-  game.settings.register(MODULE_ID, SETTING_CONTENT_VERSION, {
-    name: "Versión interna del contenido instalado",
+  game.settings.register(MODULE_ID, LEGACY_MIGRATION_SETTING, {
+    name: "Estado de la migración del compendio legado",
     scope: "world",
     config: false,
     type: String,
@@ -20,89 +14,37 @@ Hooks.once("init", () => {
 });
 
 Hooks.once("ready", async () => {
-  if ( game.system?.id !== "dnd5e" ) return;
-  if ( !game.user?.isGM ) return;
+  if ( game.system?.id !== "dnd5e" || !game.user?.isGM ) return;
+  if ( game.settings.get(MODULE_ID, LEGACY_MIGRATION_SETTING) === "removed" ) return;
 
-  try {
-    const result = await provisionContent();
-    await game.settings.set(MODULE_ID, SETTING_CONTENT_VERSION, CONTENT_VERSION);
-
-    if ( result.created || result.updated || result.createdPack ) {
-      ui.notifications.info(game.i18n.localize("DND5E2024WIZSCHOOLS.contentInstalled"));
-      console.log(`${MODULE_ID} | contenido sincronizado`, result);
-    }
-  } catch (error) {
-    console.error(`${MODULE_ID} | error al instalar el contenido`, error);
-    ui.notifications.error(game.i18n.localize("DND5E2024WIZSCHOOLS.contentError"));
-  }
-});
-
-async function provisionContent() {
-  const { pack, createdPack } = await getOrCreateWorldPack();
-
-  // Los compendios de mundo deben estar desbloqueados para poder escribir.
-  if ( pack.locked ) await pack.configure({ locked: false });
-
-  let created = 0;
-  let updated = 0;
-  const toCreate = [];
-
-  for ( const source of CONTENT_ITEMS ) {
-    const existing = await pack.getDocument(source._id).catch(() => null);
-
-    if ( !existing ) {
-      toCreate.push(foundry.utils.deepClone(source));
-      continue;
-    }
-
-    const existingVersion = existing.getFlag(MODULE_ID, "contentVersion");
-    if ( existingVersion === CONTENT_VERSION ) continue;
-
-    if ( existing.type !== source.type ) {
-      await existing.delete();
-      toCreate.push(foundry.utils.deepClone(source));
-      continue;
-    }
-
-    const update = foundry.utils.deepClone(source);
-    delete update._id;
-    delete update.type;
-    delete update.ownership;
-    delete update.folder;
-    delete update.sort;
-    await existing.update(update);
-    updated++;
+  const legacyPack = game.packs.get(LEGACY_PACK_COLLECTION);
+  if ( !legacyPack ) {
+    await game.settings.set(MODULE_ID, LEGACY_MIGRATION_SETTING, "not-found");
+    return;
   }
 
-  if ( toCreate.length ) {
-    await pack.documentClass.createDocuments(toCreate, {
-      pack: pack.collection,
-      keepId: true
-    });
-    created = toCreate.length;
-  }
-
-  await pack.getIndex({ fields: ["name", "type", "system.identifier", "system.classIdentifier"] });
-  return { createdPack, created, updated, collection: pack.collection };
-}
-
-async function getOrCreateWorldPack() {
-  let pack = game.packs.get(PACK_COLLECTION);
-  if ( pack ) return { pack, createdPack: false };
-
-  const CompendiumClass = globalThis.CompendiumCollection ?? foundry?.documents?.collections?.CompendiumCollection;
-  if ( !CompendiumClass?.createCompendium ) {
-    throw new Error("La API CompendiumCollection.createCompendium no está disponible.");
-  }
-
-  pack = await CompendiumClass.createCompendium({
-    name: PACK_NAME,
-    label: PACK_LABEL,
-    type: "Item",
-    package: "world",
-    system: "dnd5e"
+  const confirmed = await foundry.applications.api.DialogV2.confirm({
+    window: { title: "D&D5e 2024 - Escuelas de Mago" },
+    content: `<p>Se ha detectado el compendio de mundo antiguo <strong>${legacyPack.title}</strong>.</p>
+      <p>La versión 1.15.0 ya incluye el compendio nativo del módulo. Para evitar subclases duplicadas, elimina el compendio antiguo.</p>
+      <p>Esta operación solo elimina el compendio legado; no modifica personajes ni el nuevo compendio.</p>`,
+    yes: { label: "Eliminar compendio antiguo" },
+    no: { label: "Conservar por ahora" },
+    rejectClose: false
   });
 
-  if ( !pack ) throw new Error(`No se pudo crear el compendio ${PACK_COLLECTION}.`);
-  return { pack, createdPack: true };
-}
+  if ( !confirmed ) {
+    await game.settings.set(MODULE_ID, LEGACY_MIGRATION_SETTING, "deferred");
+    ui.notifications.warn("El compendio antiguo sigue activo y puede mostrar subclases duplicadas.");
+    return;
+  }
+
+  try {
+    await legacyPack.deleteCompendium();
+    await game.settings.set(MODULE_ID, LEGACY_MIGRATION_SETTING, "removed");
+    ui.notifications.info("Compendio antiguo eliminado. El módulo usa ahora su pack nativo.");
+  } catch (error) {
+    console.error(`${MODULE_ID} | no se pudo eliminar el compendio legado`, error);
+    ui.notifications.error("No se pudo eliminar el compendio antiguo. Elimínalo manualmente para evitar duplicados.");
+  }
+});
