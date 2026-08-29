@@ -1,7 +1,7 @@
 {
   "DND5E2024WIZSCHOOLS": {
-    "moduleName": "D&D5e 2024 - Escuelas de Mago",
-    "contentInstalled": "Conjurador 2024 instalado o actualizado en el compendio del mundo.",
-    "contentError": "No se pudo instalar el contenido de Conjurador. Revisa la consola (F12)."
+    "contentInstalled": "D&D5e 2024 - Escuelas de Mago: contenido sincronizado correctamente.",
+    "contentError": "D&D5e 2024 - Escuelas de Mago: se produjo un error al sincronizar el contenido.",
+    "packLabel": "D&D 2024 - Escuelas de Mago"
   }
 }
