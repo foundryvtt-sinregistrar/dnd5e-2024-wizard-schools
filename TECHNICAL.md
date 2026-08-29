@@ -1,23 +1,35 @@
 # Notas técnicas
 
-## Modelo de subclase
+## Objetivo
 
-El Item `Conjurador` usa:
+- Foundry VTT 14.363
+- dnd5e 5.2.x
+- Reglas de clase: 2024
 
-```text
-type = subclass
-system.source.rules = 2024
-system.identifier = conjurer
-system.classIdentifier = wizard
-system.spellcasting.progression = none
-```
+## Arquitectura
 
-Su `system.advancement` contiene cuatro `ItemGrant` en niveles 3, 6, 10 y 14.
+El módulo crea un compendio de mundo de Items y sincroniza en él 24 documentos administrados por el módulo:
 
-## IDs estables
+- 4 Items `subclass`.
+- 20 Items `feat`.
 
-Los IDs de los seis Items y de los Advancement/Activities están fijados en `data/conjurer.mjs`. No deben regenerarse entre versiones una vez que el contenido se haya usado en personajes.
+Las subclases tienen `system.classIdentifier = "wizard"`, por lo que el navegador de subclases de dnd5e puede encontrarlas al resolver el Advancement de subclase del Mago 2024.
 
-## Compendio de prueba
+Cada subclase usa `ItemGrant` en 3 / 6 / 10 / 14.
 
-El módulo crea un compendio de mundo porque las bases de compendio de Foundry v11+ son carpetas LevelDB. Para una release pública final, crea un compendio propio del módulo con Foundry Module Maker, exporta estos Items manteniendo los IDs y reemplaza los UUID `Compendium.world...` por los UUID del compendio del módulo.
+## IDs
+
+Todos los `_id` del contenido son propios, estables, alfanuméricos y de 16 caracteres. Los IDs del Conjurador de 1.14.0 se conservan para que una actualización no rompa los UUID ya existentes.
+
+## Sincronización
+
+`CONTENT_VERSION` controla cuándo actualizar documentos administrados existentes. El instalador:
+
+1. crea el compendio de mundo si no existe;
+2. crea Items que falten conservando sus IDs;
+3. actualiza Items administrados cuya versión interna haya cambiado;
+4. no modifica documentos ajenos al módulo.
+
+## Decisiones de automatización
+
+No se añaden hooks globales para modificar lanzamientos de conjuros o criaturas invocadas. Esta versión prioriza compatibilidad y evita efectos colaterales. Cuando una regla no puede expresarse de forma segura mediante Activities/Active Effects, se conserva como descripción y Nota de Foundry.
