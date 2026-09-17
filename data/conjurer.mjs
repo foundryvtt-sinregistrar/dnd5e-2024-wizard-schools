@@ -69,7 +69,7 @@ const durable = featureBase({
   name: "Invocaciones Duraderas",
   level: 14,
   identifier: "durable-summons",
-  description: `<p>Cualquier criatura que invoques o crees con un conjuro de Conjuración posee 30 puntos de golpe temporales.</p><section class="secret"><p><strong>Nota de Foundry.</strong> Aplica 30 PG temporales a la criatura invocada o creada cuando corresponda. Esta primera versión no modifica automáticamente actores o tokens generados por conjuros de invocación.</p></section>`
+  description: `<p>Cualquier criatura que invoques o crees con un conjuro de Conjuración posee 30 puntos de golpe temporales.</p><section class="secret"><p><strong>Automatización.</strong> Las criaturas creadas mediante una actividad de invocación de un conjuro de Conjuración reciben automáticamente al menos 30 PG temporales.</p></section>`
 });
 
 const subclass = {

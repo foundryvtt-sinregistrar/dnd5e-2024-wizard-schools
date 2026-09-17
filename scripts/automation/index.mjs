@@ -4,6 +4,7 @@ import { AUTOMATION_SETTING } from "./constants.mjs";
 import { registerFocusedConjurationAutomation } from "./focused-conjuration.mjs";
 import { registerGrimHarvestAutomation } from "./grim-harvest.mjs";
 import { registerSplitEnchantmentAutomation } from "./split-enchantment.mjs";
+import { registerSummonAutomation } from "./summons.mjs";
 
 export function registerAutomationSettings() {
   game.settings.register(MODULE_ID, AUTOMATION_SETTING, {
@@ -22,4 +23,5 @@ export function registerAutomationHooks() {
   registerFocusedConjurationAutomation();
   registerGrimHarvestAutomation();
   registerSplitEnchantmentAutomation();
+  registerSummonAutomation();
 }

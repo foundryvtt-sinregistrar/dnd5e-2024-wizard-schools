@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   actorTookDamage,
+  classLevel,
   concentratingOnSchool,
   creatureType,
   findFeature,
@@ -10,6 +11,7 @@ import {
   spellLevel
 } from "../scripts/automation/utils.mjs";
 import { isValidGrimHarvestVictim } from "../scripts/automation/grim-harvest.mjs";
+import { applySummonFeatures } from "../scripts/automation/summons.mjs";
 
 test("identifica rasgos por identifier y no por nombre traducido", () => {
   const feature = { type: "feat", system: { identifier: "benign-transposition" } };
@@ -52,4 +54,34 @@ test("Duplicar Encantamiento solo acepta actividades de una criatura", () => {
   assert.equal(isSingleCreatureActivity(single), true);
   assert.equal(isSingleCreatureActivity(area), false);
   assert.equal(isSingleCreatureActivity(multiple), false);
+});
+
+test("Invocaciones Duraderas concede al menos 30 PG temporales", () => {
+  const feature = { type: "feat", system: { identifier: "durable-summons" } };
+  const caster = { items: [feature] };
+  const config = {
+    actor: { system: { attributes: { hp: { temp: 7 } }, details: { type: { value: "beast" } } }, items: [] },
+    actorUpdates: { effects: [], items: [] }
+  };
+  applySummonFeatures({ item: { type: "spell", actor: caster, system: { school: "con" } } }, config);
+  assert.equal(config.actorUpdates["system.attributes.hp.temp"], 30);
+});
+
+test("Siervos Muertos Vivientes aumenta PG y daño de armas", () => {
+  const feature = { type: "feat", img: "thralls.webp", system: { identifier: "undead-thralls" } };
+  const wizard = { type: "class", system: { identifier: "wizard", levels: 8 } };
+  const caster = { items: [feature, wizard], system: { attributes: { prof: 3 } } };
+  const weapon = { id: "weapon1", type: "weapon", effects: [] };
+  const config = {
+    actor: {
+      system: { attributes: { hp: { value: 20, max: 20 } }, details: { type: { value: "undead" } } },
+      items: [weapon]
+    },
+    actorUpdates: { effects: [], items: [] }
+  };
+  assert.equal(classLevel(caster, "wizard"), 8);
+  applySummonFeatures({ item: { type: "spell", actor: caster, system: { school: "nec" } } }, config);
+  assert.equal(config.actorUpdates["system.attributes.hp.max"], 28);
+  assert.equal(config.actorUpdates["system.attributes.hp.value"], 28);
+  assert.equal(config.actorUpdates.items[0].effects[0].changes[0].value, "3");
 });

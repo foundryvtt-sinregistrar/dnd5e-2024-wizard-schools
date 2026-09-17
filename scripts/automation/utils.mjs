@@ -50,6 +50,11 @@ export function isSingleCreatureActivity(activity) {
   return Number(target?.affects?.count) === 1 && ["creature", "ally", "enemy"].includes(target?.affects?.type);
 }
 
+export function classLevel(actor, identifier) {
+  const classItem = actor?.items?.find(item => item.type === "class" && item.system?.identifier === identifier);
+  return Number(classItem?.system?.levels ?? 0);
+}
+
 export async function postAutomationMessage(actor, title, body) {
   if ( !globalThis.ChatMessage?.implementation ) return;
   await ChatMessage.implementation.create({
