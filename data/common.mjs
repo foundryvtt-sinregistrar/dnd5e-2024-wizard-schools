@@ -68,6 +68,9 @@ export function utilityActivity({
   targetType = "self",
   targetSpecial = "",
   consumeItemUse = false,
+  durationConcentration = false,
+  durationValue = "",
+  durationUnits = "",
   name = ""
 }) {
   return {
@@ -80,7 +83,13 @@ export function utilityActivity({
       spellSlot: true
     },
     description: { chatFlavor: "" },
-    duration: { concentration: false, value: "", units: "", special: "", override: false },
+    duration: {
+      concentration: durationConcentration,
+      value: durationValue,
+      units: durationUnits,
+      special: "",
+      override: false
+    },
     effects: [],
     range: { units: rangeUnits, special: rangeSpecial, override: false },
     target: {

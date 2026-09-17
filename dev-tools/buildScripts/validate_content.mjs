@@ -35,6 +35,14 @@ for ( const item of CONTENT_ITEMS ) {
   }
 }
 
+const minorAlchemy = CONTENT_ITEMS.find(item => item.system?.identifier === "minor-alchemy");
+const minorAlchemyActivity = Object.values(minorAlchemy?.system?.activities ?? {})[0];
+if ( !minorAlchemyActivity?.duration?.concentration
+  || minorAlchemyActivity.duration.value !== "1"
+  || minorAlchemyActivity.duration.units !== "hour" ) {
+  errors.push("Alquimia Menor no está configurada como concentración de una hora.");
+}
+
 const packPath = fileURLToPath(new URL("../../packs/classes24", import.meta.url));
 const db = new ClassicLevel(packPath, { valueEncoding: "json", readOnly: true });
 const packedIds = new Set();

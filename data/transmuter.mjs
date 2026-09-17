@@ -44,7 +44,7 @@ const alchemy = featureBase({
   name: "Alquimia Menor",
   level: 3,
   identifier: "minor-alchemy",
-  description: `<p>Puedes alterar temporalmente un objeto no mágico hecho por completo de madera, piedra no preciosa, hierro, cobre o plata, transformándolo por entero en cualquiera de esos materiales.</p><p>Por cada 10 minutos de trabajo transformas hasta 1 pie cúbico. El objeto recupera su material original tras 1 hora o cuando pierdes la concentración, como si estuvieras concentrándote en un conjuro.</p><section class="secret"><p><strong>Adaptación 2024.</strong> Se obtiene a nivel 3 para ajustarse a la progresión moderna de subclases.</p></section>`,
+  description: `<p>Puedes alterar temporalmente un objeto no mágico hecho por completo de madera, piedra no preciosa, hierro, cobre o plata, transformándolo por entero en cualquiera de esos materiales.</p><p>Por cada 10 minutos de trabajo transformas hasta 1 pie cúbico. El objeto recupera su material original tras 1 hora o cuando pierdes la concentración, como si estuvieras concentrándote en un conjuro.</p><section class="secret"><p><strong>Adaptación 2024.</strong> Se obtiene a nivel 3 para ajustarse a la progresión moderna de subclases.</p><p><strong>Automatización.</strong> La actividad inicia una concentración nativa de una hora; la transformación concreta del objeto se describe narrativamente.</p></section>`,
   activities: {
     [IDS.actAlchemy]: utilityActivity({
       id: IDS.actAlchemy,
@@ -54,6 +54,9 @@ const alchemy = featureBase({
       rangeSpecial: "Toque; 10 minutos por pie cúbico",
       targetType: "object",
       targetSpecial: "Objeto no mágico de madera, piedra no preciosa, hierro, cobre o plata",
+      durationConcentration: true,
+      durationValue: "1",
+      durationUnits: "hour",
       name: "Alquimia Menor"
     })
   }
