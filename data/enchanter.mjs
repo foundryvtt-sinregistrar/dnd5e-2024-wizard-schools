@@ -23,7 +23,8 @@ const IDS = Object.freeze({
   adv14: "wz24EncAdv014001",
   actHypnotic: "wz24EncHypAct001",
   actInstinct: "wz24EncInsAct001",
-  actMemories: "wz24EncMemAct001"
+  actMemories: "wz24EncMemAct001",
+  effectHypnotic: "wz24HypnoEffect1"
 });
 
 const uuid = id => `Compendium.${PACK_COLLECTION}.Item.${id}`;
@@ -41,7 +42,7 @@ const hypnotic = featureBase({
   name: "Mirada Hipnótica",
   level: 3,
   identifier: "hypnotic-gaze",
-  description: `<p>Como acción, elige una criatura que puedas ver a 5 pies o menos de ti. Si puede verte u oírte, debe superar una salvación de Sabiduría contra la CD de tus conjuros de mago. Si falla, queda hechizada por ti hasta el final de tu siguiente turno; mientras dure, está incapacitada, su velocidad es 0 y resulta evidente que está bajo tu influencia.</p><p>En tus turnos posteriores puedes usar tu acción para mantener el efecto hasta el final de tu siguiente turno. El efecto termina si te alejas a más de 5 pies, si la criatura deja de verte u oírte o si recibe daño.</p><p>Cuando el efecto termina, o si supera la salvación inicial, no puedes volver a usar este rasgo contra esa criatura hasta que finalices un descanso largo.</p><section class="secret"><p><strong>Nota de Foundry.</strong> La actividad realiza la salvación. La duración, la inmunidad individual tras terminar y los estados Hechizado/Incapacitado se controlan manualmente.</p></section>`,
+  description: `<p>Como acción, elige una criatura que puedas ver a 5 pies o menos de ti. Si puede verte u oírte, debe superar una salvación de Sabiduría contra la CD de tus conjuros de mago. Si falla, queda hechizada por ti hasta el final de tu siguiente turno; mientras dure, está incapacitada, su velocidad es 0 y resulta evidente que está bajo tu influencia.</p><p>En tus turnos posteriores puedes usar tu acción para mantener el efecto hasta el final de tu siguiente turno. El efecto termina si te alejas a más de 5 pies, si la criatura deja de verte u oírte o si recibe daño.</p><p>Cuando el efecto termina, o si supera la salvación inicial, no puedes volver a usar este rasgo contra esa criatura hasta que finalices un descanso largo.</p><section class="secret"><p><strong>Automatización.</strong> Aplica desde el mensaje el efecto tras una salvación fallida. Foundry añade Hechizado, Incapacitado y velocidad 0, lo retira al recibir daño y registra la inmunidad hasta el descanso largo del encantador. Distancia, percepción y una salvación superada se comprueban manualmente.</p></section>`,
   activities: {
     [IDS.actHypnotic]: saveActivity({
       id: IDS.actHypnotic,
@@ -53,8 +54,28 @@ const hypnotic = featureBase({
       targetSpecial: "Una criatura que pueda verte u oírte",
       name: "Mirada Hipnótica"
     })
-  }
+  },
+  effects: [{
+    _id: IDS.effectHypnotic,
+    name: "Mirada Hipnótica",
+    img: "icons/magic/control/hypnosis-mesmerism-eye.webp",
+    type: "base",
+    transfer: false,
+    disabled: false,
+    duration: { rounds: 1, turns: 0, seconds: 6 },
+    statuses: ["charmed", "incapacitated"],
+    changes: [
+      { key: "system.attributes.movement.walk", mode: 3, value: "0", priority: 20 },
+      { key: "system.attributes.movement.fly", mode: 3, value: "0", priority: 20 },
+      { key: "system.attributes.movement.swim", mode: 3, value: "0", priority: 20 },
+      { key: "system.attributes.movement.climb", mode: 3, value: "0", priority: 20 },
+      { key: "system.attributes.movement.burrow", mode: 3, value: "0", priority: 20 }
+    ],
+    flags: { [MODULE_ID]: { hypnoticGaze: true } }
+  }]
 });
+
+hypnotic.system.activities[IDS.actHypnotic].effects = [{ _id: IDS.effectHypnotic }];
 
 const instinctive = featureBase({
   id: IDS.instinctive,

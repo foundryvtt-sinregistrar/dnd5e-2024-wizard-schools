@@ -14,6 +14,7 @@ import { isValidGrimHarvestVictim } from "../scripts/automation/grim-harvest.mjs
 import { preventMaximumHpReduction } from "../scripts/automation/inured-to-undeath.mjs";
 import { isMasterTransmuterActivity } from "../scripts/automation/master-transmuter.mjs";
 import { findPolymorph } from "../scripts/automation/shapechanger.mjs";
+import { isHypnoticGazeEffect } from "../scripts/automation/hypnotic-gaze.mjs";
 import { applySummonFeatures } from "../scripts/automation/summons.mjs";
 import { stoneEffect, stoneItemData } from "../scripts/automation/transmuters-stone.mjs";
 
@@ -120,4 +121,9 @@ test("Cambiar de Forma reutiliza Polymorph si ya está en el libro", () => {
   const polymorph = { type: "spell", system: { identifier: "polymorph" } };
   assert.equal(findPolymorph({ items: [polymorph] }), polymorph);
   assert.equal(findPolymorph({ items: [] }), null);
+});
+
+test("Mirada Hipnótica identifica únicamente sus efectos gestionados", () => {
+  assert.equal(isHypnoticGazeEffect({ flags: { "dnd5e-2024-wizard-schools": { hypnoticGaze: true } } }), true);
+  assert.equal(isHypnoticGazeEffect({ flags: {} }), false);
 });
