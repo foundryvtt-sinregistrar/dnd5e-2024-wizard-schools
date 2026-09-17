@@ -7,5 +7,7 @@ export const FEATURE_IDENTIFIERS = Object.freeze({
   splitEnchantment: "split-enchantment",
   durableSummons: "durable-summons",
   undeadThralls: "undead-thralls",
-  inuredToUndeath: "inured-to-undeath"
+  inuredToUndeath: "inured-to-undeath",
+  transmutersStone: "transmuters-stone",
+  masterTransmuter: "master-transmuter"
 });

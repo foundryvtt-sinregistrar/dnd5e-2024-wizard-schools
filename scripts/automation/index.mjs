@@ -6,6 +6,7 @@ import { registerGrimHarvestAutomation } from "./grim-harvest.mjs";
 import { registerInuredToUndeathAutomation } from "./inured-to-undeath.mjs";
 import { registerSplitEnchantmentAutomation } from "./split-enchantment.mjs";
 import { registerSummonAutomation } from "./summons.mjs";
+import { registerTransmutersStoneAutomation } from "./transmuters-stone.mjs";
 
 export function registerAutomationSettings() {
   game.settings.register(MODULE_ID, AUTOMATION_SETTING, {
@@ -26,4 +27,5 @@ export function registerAutomationHooks() {
   registerInuredToUndeathAutomation();
   registerSplitEnchantmentAutomation();
   registerSummonAutomation();
+  registerTransmutersStoneAutomation();
 }

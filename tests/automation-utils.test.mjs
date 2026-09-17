@@ -13,6 +13,7 @@ import {
 import { isValidGrimHarvestVictim } from "../scripts/automation/grim-harvest.mjs";
 import { preventMaximumHpReduction } from "../scripts/automation/inured-to-undeath.mjs";
 import { applySummonFeatures } from "../scripts/automation/summons.mjs";
+import { stoneEffect, stoneItemData } from "../scripts/automation/transmuters-stone.mjs";
 
 test("identifica rasgos por identifier y no por nombre traducido", () => {
   const feature = { type: "feat", system: { identifier: "benign-transposition" } };
@@ -96,4 +97,13 @@ test("Habituado a la Muerte en Vida bloquea solo reducciones de PG máximos", ()
   const increase = { system: { attributes: { hp: { max: 60 } } } };
   assert.equal(preventMaximumHpReduction(actor, increase), false);
   assert.equal(increase.system.attributes.hp.max, 60);
+});
+
+test("Piedra de Transmutador crea beneficios transferibles", () => {
+  const creator = { name: "Merlín", uuid: "Actor.merlin" };
+  const stone = stoneItemData(creator, "fire");
+  assert.equal(stone.type, "loot");
+  assert.equal(stone.effects[0].transfer, true);
+  assert.equal(stone.effects[0].changes[0].value, "fire");
+  assert.equal(stoneEffect("constitution").changes[0].key, "system.abilities.con.proficient");
 });
