@@ -22,6 +22,7 @@ const IDS = Object.freeze({
   adv10: "wz24NecAdv010001",
   adv14: "wz24NecAdv014001",
   effectNecrotic: "wz24NecResist001",
+  effectControl: "wz24ControlEff01",
   actControl: "wz24NecCtlAct001"
 });
 
@@ -71,7 +72,7 @@ const control = featureBase({
   name: "Controlar Muertos Vivientes",
   level: 14,
   identifier: "command-undead",
-  description: `<p>Como acción, elige un muerto viviente que puedas ver a 60 pies o menos. Debe hacer una salvación de Carisma contra la CD de tus conjuros de mago. Si la supera, no puedes volver a usar este rasgo sobre esa criatura. Si falla, se vuelve amistosa hacia ti y obedece tus órdenes hasta que vuelvas a usar este rasgo.</p><p>Si el objetivo tiene Inteligencia 8 o superior, tiene ventaja en la salvación. Si tiene Inteligencia 12 o superior y falla, puede repetir la salvación al final de cada hora hasta tener éxito y liberarse.</p><section class="secret"><p><strong>Nota de Foundry.</strong> La actividad resuelve la salvación inicial. La ventaja por Inteligencia, el control prolongado y las repeticiones horarias se gestionan manualmente.</p></section>`,
+  description: `<p>Como acción, elige un muerto viviente que puedas ver a 60 pies o menos. Debe hacer una salvación de Carisma contra la CD de tus conjuros de mago. Si la supera, no puedes volver a usar este rasgo sobre esa criatura. Si falla, se vuelve amistosa hacia ti y obedece tus órdenes hasta que vuelvas a usar este rasgo.</p><p>Si el objetivo tiene Inteligencia 8 o superior, tiene ventaja en la salvación. Si tiene Inteligencia 12 o superior y falla, puede repetir la salvación al final de cada hora hasta tener éxito y liberarse.</p><section class="secret"><p><strong>Automatización.</strong> Foundry valida que el objetivo sea un muerto viviente, avisa de la ventaja y las repeticiones por Inteligencia y ofrece un efecto de control tras el fallo. Aplicarlo elimina el control anterior del mismo nigromante.</p></section>`,
   activities: {
     [IDS.actControl]: saveActivity({
       id: IDS.actControl,
@@ -83,8 +84,22 @@ const control = featureBase({
       targetSpecial: "Un muerto viviente visible",
       name: "Controlar Muerto Viviente"
     })
-  }
+  },
+  effects: [{
+    _id: IDS.effectControl,
+    name: "Controlado por Maestro Nigromante",
+    img: "icons/magic/death/hand-dirt-undead-zombie.webp",
+    type: "base",
+    transfer: false,
+    disabled: false,
+    duration: { seconds: null, rounds: null, turns: null },
+    statuses: [],
+    changes: [],
+    flags: { [MODULE_ID]: { commandUndead: true } }
+  }]
 });
+
+control.system.activities[IDS.actControl].effects = [{ _id: IDS.effectControl }];
 
 const subclass = subclassBase({
   id: IDS.subclass,

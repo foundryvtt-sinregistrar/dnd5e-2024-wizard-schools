@@ -15,6 +15,7 @@ import { preventMaximumHpReduction } from "../scripts/automation/inured-to-undea
 import { isMasterTransmuterActivity } from "../scripts/automation/master-transmuter.mjs";
 import { findPolymorph } from "../scripts/automation/shapechanger.mjs";
 import { isHypnoticGazeEffect } from "../scripts/automation/hypnotic-gaze.mjs";
+import { isCommandUndeadEffect } from "../scripts/automation/command-undead.mjs";
 import { applySummonFeatures } from "../scripts/automation/summons.mjs";
 import { stoneEffect, stoneItemData } from "../scripts/automation/transmuters-stone.mjs";
 
@@ -126,4 +127,9 @@ test("Cambiar de Forma reutiliza Polymorph si ya está en el libro", () => {
 test("Mirada Hipnótica identifica únicamente sus efectos gestionados", () => {
   assert.equal(isHypnoticGazeEffect({ flags: { "dnd5e-2024-wizard-schools": { hypnoticGaze: true } } }), true);
   assert.equal(isHypnoticGazeEffect({ flags: {} }), false);
+});
+
+test("Controlar Muertos Vivientes identifica su marcador de control", () => {
+  assert.equal(isCommandUndeadEffect({ flags: { "dnd5e-2024-wizard-schools": { commandUndead: true } } }), true);
+  assert.equal(isCommandUndeadEffect({ flags: {} }), false);
 });

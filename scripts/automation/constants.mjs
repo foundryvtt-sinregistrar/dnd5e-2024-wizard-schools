@@ -11,5 +11,6 @@ export const FEATURE_IDENTIFIERS = Object.freeze({
   transmutersStone: "transmuters-stone",
   masterTransmuter: "master-transmuter",
   shapechanger: "shapechanger",
-  hypnoticGaze: "hypnotic-gaze"
+  hypnoticGaze: "hypnotic-gaze",
+  commandUndead: "command-undead"
 });
