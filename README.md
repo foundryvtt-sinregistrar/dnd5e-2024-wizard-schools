@@ -35,6 +35,8 @@ C:\docker\foundryvtt\foundryvtt-14.363-B\data\Data\modules\
 D&D 2024 - Escuelas de Mago
 ```
 
+El compendio organiza el contenido en cuatro carpetas —Conjurador, Encantador, Nigromante y Transmutador— y utiliza un icono diferente para cada subclase y rasgo.
+
 ## Prueba recomendada
 
 Crea un personaje nuevo y añade la clase **Mago 2024**.
@@ -92,6 +94,8 @@ dnd5e-2024-wizard-schools/
 │  └─ main.mjs
 ├─ packs/
 │  └─ classes24/
+├─ assets/
+│  └─ icons/subclasses/
 └─ data/
    ├─ common.mjs
    ├─ conjurer.mjs

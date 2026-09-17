@@ -1,8 +1,30 @@
 export const MODULE_ID = "dnd5e-2024-wizard-schools";
-export const CONTENT_VERSION = "1.14.2-native-pack.1";
+export const CONTENT_VERSION = "1.14.3-presentation.1";
 export const PACK_NAME = "classes24";
 export const PACK_LABEL = "D&D 2024 - Escuelas de Mago";
 export const PACK_COLLECTION = `${MODULE_ID}.${PACK_NAME}`;
+
+export const FOLDER_IDS = Object.freeze({
+  conjurer: "wz24FolderConj01",
+  enchanter: "wz24FolderEnch01",
+  necromancer: "wz24FolderNecr01",
+  transmuter: "wz24FolderTran01"
+});
+
+export const CONTENT_FOLDERS = Object.freeze([
+  { _id: FOLDER_IDS.conjurer, name: "Conjurador", color: "#2386c8", sort: 100000 },
+  { _id: FOLDER_IDS.enchanter, name: "Encantador", color: "#b13ca4", sort: 200000 },
+  { _id: FOLDER_IDS.necromancer, name: "Nigromante", color: "#29926f", sort: 300000 },
+  { _id: FOLDER_IDS.transmuter, name: "Transmutador", color: "#c78226", sort: 400000 }
+]);
+
+export function applyPresentation(items, folder, images) {
+  return Object.freeze(items.map(item => ({
+    ...item,
+    img: images[item._id],
+    folder
+  })));
+}
 
 export function featureBase({ id, name, level, identifier, description, uses, activities = {}, effects = [] }) {
   return {
