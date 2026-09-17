@@ -16,6 +16,7 @@ import { isMasterTransmuterActivity } from "../scripts/automation/master-transmu
 import { findPolymorph } from "../scripts/automation/shapechanger.mjs";
 import { isHypnoticGazeEffect } from "../scripts/automation/hypnotic-gaze.mjs";
 import { isCommandUndeadEffect } from "../scripts/automation/command-undead.mjs";
+import { alterMemoriesHours, nearestCandidates } from "../scripts/automation/enchanter-assistance.mjs";
 import { applySummonFeatures } from "../scripts/automation/summons.mjs";
 import { stoneEffect, stoneItemData } from "../scripts/automation/transmuters-stone.mjs";
 
@@ -132,4 +133,20 @@ test("Mirada Hipnótica identifica únicamente sus efectos gestionados", () => {
 test("Controlar Muertos Vivientes identifica su marcador de control", () => {
   assert.equal(isCommandUndeadEffect({ flags: { "dnd5e-2024-wizard-schools": { commandUndead: true } } }), true);
   assert.equal(isCommandUndeadEffect({ flags: {} }), false);
+});
+
+test("Modificar Recuerdos calcula al menos una hora", () => {
+  assert.equal(alterMemoriesHours({ system: { abilities: { cha: { mod: 3 } } } }), 4);
+  assert.equal(alterMemoriesHours({ system: { abilities: { cha: { mod: -2 } } } }), 1);
+});
+
+test("Encantamiento Instintivo conserva empates entre criaturas cercanas", () => {
+  const origin = { x: 0, actor: { uuid: "Actor.attacker" } };
+  const candidates = [
+    { x: 4, actor: { uuid: "Actor.a" } },
+    { x: 4, actor: { uuid: "Actor.b" } },
+    { x: 7, actor: { uuid: "Actor.c" } }
+  ];
+  const nearest = nearestCandidates(origin, candidates, new Set(), (_origin, token) => token.x);
+  assert.deepEqual(nearest, candidates.slice(0, 2));
 });

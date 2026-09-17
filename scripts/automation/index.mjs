@@ -1,6 +1,7 @@
 import { MODULE_ID } from "../../data/index.mjs";
 import { registerBenignTranspositionAutomation } from "./benign-transposition.mjs";
 import { registerCommandUndeadAutomation } from "./command-undead.mjs";
+import { registerEnchanterAssistance } from "./enchanter-assistance.mjs";
 import { AUTOMATION_SETTING } from "./constants.mjs";
 import { registerFocusedConjurationAutomation } from "./focused-conjuration.mjs";
 import { registerGrimHarvestAutomation } from "./grim-harvest.mjs";
@@ -27,6 +28,7 @@ export function registerAutomationSettings() {
 export function registerAutomationHooks() {
   registerBenignTranspositionAutomation();
   registerCommandUndeadAutomation();
+  registerEnchanterAssistance();
   registerFocusedConjurationAutomation();
   registerGrimHarvestAutomation();
   registerInuredToUndeathAutomation();
