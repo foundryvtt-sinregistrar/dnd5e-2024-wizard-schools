@@ -9,5 +9,6 @@ export const FEATURE_IDENTIFIERS = Object.freeze({
   undeadThralls: "undead-thralls",
   inuredToUndeath: "inured-to-undeath",
   transmutersStone: "transmuters-stone",
-  masterTransmuter: "master-transmuter"
+  masterTransmuter: "master-transmuter",
+  shapechanger: "shapechanger"
 });

@@ -13,6 +13,7 @@ import {
 import { isValidGrimHarvestVictim } from "../scripts/automation/grim-harvest.mjs";
 import { preventMaximumHpReduction } from "../scripts/automation/inured-to-undeath.mjs";
 import { isMasterTransmuterActivity } from "../scripts/automation/master-transmuter.mjs";
+import { findPolymorph } from "../scripts/automation/shapechanger.mjs";
 import { applySummonFeatures } from "../scripts/automation/summons.mjs";
 import { stoneEffect, stoneItemData } from "../scripts/automation/transmuters-stone.mjs";
 
@@ -113,4 +114,10 @@ test("Maestro Transmutador reconoce únicamente sus cuatro actividades", () => {
   const item = { system: { identifier: "master-transmuter" } };
   assert.equal(isMasterTransmuterActivity({ id: "wz24TraPanAct001", item }), true);
   assert.equal(isMasterTransmuterActivity({ id: "otraActividad", item }), false);
+});
+
+test("Cambiar de Forma reutiliza Polymorph si ya está en el libro", () => {
+  const polymorph = { type: "spell", system: { identifier: "polymorph" } };
+  assert.equal(findPolymorph({ items: [polymorph] }), polymorph);
+  assert.equal(findPolymorph({ items: [] }), null);
 });

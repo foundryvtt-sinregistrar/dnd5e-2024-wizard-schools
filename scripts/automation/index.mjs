@@ -6,6 +6,7 @@ import { registerGrimHarvestAutomation } from "./grim-harvest.mjs";
 import { registerInuredToUndeathAutomation } from "./inured-to-undeath.mjs";
 import { registerMasterTransmuterAutomation } from "./master-transmuter.mjs";
 import { registerSplitEnchantmentAutomation } from "./split-enchantment.mjs";
+import { registerShapechangerAutomation } from "./shapechanger.mjs";
 import { registerSummonAutomation } from "./summons.mjs";
 import { registerTransmutersStoneAutomation } from "./transmuters-stone.mjs";
 
@@ -28,6 +29,7 @@ export function registerAutomationHooks() {
   registerInuredToUndeathAutomation();
   registerMasterTransmuterAutomation();
   registerSplitEnchantmentAutomation();
+  registerShapechangerAutomation();
   registerSummonAutomation();
   registerTransmutersStoneAutomation();
 }
