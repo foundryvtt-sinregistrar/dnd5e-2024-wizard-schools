@@ -49,7 +49,7 @@ const benign = featureBase({
   name: "Trasposición Benigna",
   level: 6,
   identifier: "benign-transposition",
-  description: `<p>Como acción, puedes teletransportarte hasta 30 pies a un espacio desocupado que puedas ver. Alternativamente, puedes elegir un espacio dentro del alcance ocupado por una criatura Pequeña o Mediana. Si la criatura es voluntaria, ambos os teletransportáis e intercambiáis vuestras posiciones.</p><p>Una vez utilizado este rasgo, debes finalizar un descanso largo o lanzar un conjuro de Conjuración de nivel 1 o superior para poder volver a usarlo.</p><section class="secret"><p><strong>Nota de Foundry.</strong> El uso se recupera automáticamente al finalizar un descanso largo. Si lanzas un conjuro de Conjuración de nivel 1 o superior, restaura manualmente el uso del rasgo; esa recarga condicional no se automatiza en esta versión de prueba.</p></section>`,
+  description: `<p>Como acción, puedes teletransportarte hasta 30 pies a un espacio desocupado que puedas ver. Alternativamente, puedes elegir un espacio dentro del alcance ocupado por una criatura Pequeña o Mediana. Si la criatura es voluntaria, ambos os teletransportáis e intercambiáis vuestras posiciones.</p><p>Una vez utilizado este rasgo, debes finalizar un descanso largo o lanzar un conjuro de Conjuración de nivel 1 o superior para poder volver a usarlo.</p><section class="secret"><p><strong>Automatización.</strong> El uso se recupera al finalizar un descanso largo y también al lanzar un conjuro de Conjuración de nivel 1 o superior.</p></section>`,
   uses: { max: "1", spent: 0, recovery: [{ period: "lr", type: "recoverAll" }] },
   activities: {
     [IDS.actBenign]: utilityActivity({ id: IDS.actBenign, activation: "action", rangeUnits: "ft", rangeSpecial: "30 pies", targetType: "self", targetSpecial: "Teletranspórtate; opcionalmente intercambia posición con una criatura voluntaria Pequeña o Mediana", consumeItemUse: true })
@@ -61,7 +61,7 @@ const focused = featureBase({
   name: "Conjuración Concentrada",
   level: 10,
   identifier: "focused-conjuration",
-  description: `<p>Recibir daño no te hace perder la concentración en tus conjuros de Conjuración.</p><section class="secret"><p><strong>Nota de Foundry.</strong> Este efecto depende de la escuela del conjuro que estés manteniendo y no se automatiza mediante un Active Effect genérico para evitar que afecte a conjuros de otras escuelas.</p></section>`
+  description: `<p>Recibir daño no te hace perder la concentración en tus conjuros de Conjuración.</p><section class="secret"><p><strong>Automatización.</strong> Foundry omite la prueba de concentración causada por daño solo cuando estás concentrado en un conjuro de Conjuración. Otras causas de pérdida de concentración no cambian.</p></section>`
 });
 
 const durable = featureBase({
