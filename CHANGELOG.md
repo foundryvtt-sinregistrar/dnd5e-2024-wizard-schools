@@ -1,6 +1,6 @@
 # Changelog
 
-## Sin publicar
+## 1.14.3 - 2026-09-17
 
 - Añadidos iconos propios para Conjurador, Encantador, Nigromante y Transmutador.
 - Asignado un icono temático diferente a cada rasgo.

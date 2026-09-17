@@ -2,7 +2,7 @@
   "id": "dnd5e-2024-wizard-schools",
   "title": "D&D5e 2024 - Escuelas de Mago",
   "description": "Añade Conjurador, Encantador, Nigromante y Transmutador adaptados del PHB 2014 a la progresión de subclases del Mago 2024.",
-  "version": "1.14.2",
+  "version": "1.14.3",
   "authors": [
     {
       "name": "foundryvtt-sinregistrar"
