@@ -56,7 +56,7 @@ const inured = featureBase({
   name: "Habituado a la Muerte en Vida",
   level: 10,
   identifier: "inured-to-undeath",
-  description: `<p>Obtienes resistencia al daño necrótico y tus puntos de golpe máximos no pueden ser reducidos.</p><section class="secret"><p><strong>Nota de Foundry.</strong> La resistencia necrótica se aplica automáticamente mediante un Active Effect. La inmunidad a la reducción de PG máximos se mantiene como regla descriptiva porque no existe una modificación genérica segura para todos los efectos que puedan reducirlos.</p></section>`,
+  description: `<p>Obtienes resistencia al daño necrótico y tus puntos de golpe máximos no pueden ser reducidos.</p><section class="secret"><p><strong>Automatización.</strong> La resistencia necrótica se aplica mediante un Active Effect y las actualizaciones que intenten reducir directamente tus PG máximos se bloquean.</p></section>`,
   effects: [
     transferableEffect({
       id: IDS.effectNecrotic,

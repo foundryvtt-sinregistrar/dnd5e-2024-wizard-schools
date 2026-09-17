@@ -11,6 +11,7 @@ import {
   spellLevel
 } from "../scripts/automation/utils.mjs";
 import { isValidGrimHarvestVictim } from "../scripts/automation/grim-harvest.mjs";
+import { preventMaximumHpReduction } from "../scripts/automation/inured-to-undeath.mjs";
 import { applySummonFeatures } from "../scripts/automation/summons.mjs";
 
 test("identifica rasgos por identifier y no por nombre traducido", () => {
@@ -84,4 +85,15 @@ test("Siervos Muertos Vivientes aumenta PG y daño de armas", () => {
   assert.equal(config.actorUpdates["system.attributes.hp.max"], 28);
   assert.equal(config.actorUpdates["system.attributes.hp.value"], 28);
   assert.equal(config.actorUpdates.items[0].effects[0].changes[0].value, "3");
+});
+
+test("Habituado a la Muerte en Vida bloquea solo reducciones de PG máximos", () => {
+  const actor = { system: { attributes: { hp: { max: 50 } } } };
+  const reduction = { "system.attributes.hp.max": 35 };
+  assert.equal(preventMaximumHpReduction(actor, reduction), true);
+  assert.equal(Object.hasOwn(reduction, "system.attributes.hp.max"), false);
+
+  const increase = { system: { attributes: { hp: { max: 60 } } } };
+  assert.equal(preventMaximumHpReduction(actor, increase), false);
+  assert.equal(increase.system.attributes.hp.max, 60);
 });

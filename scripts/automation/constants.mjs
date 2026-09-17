@@ -6,5 +6,6 @@ export const FEATURE_IDENTIFIERS = Object.freeze({
   grimHarvest: "grim-harvest",
   splitEnchantment: "split-enchantment",
   durableSummons: "durable-summons",
-  undeadThralls: "undead-thralls"
+  undeadThralls: "undead-thralls",
+  inuredToUndeath: "inured-to-undeath"
 });

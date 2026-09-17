@@ -3,6 +3,7 @@ import { registerBenignTranspositionAutomation } from "./benign-transposition.mj
 import { AUTOMATION_SETTING } from "./constants.mjs";
 import { registerFocusedConjurationAutomation } from "./focused-conjuration.mjs";
 import { registerGrimHarvestAutomation } from "./grim-harvest.mjs";
+import { registerInuredToUndeathAutomation } from "./inured-to-undeath.mjs";
 import { registerSplitEnchantmentAutomation } from "./split-enchantment.mjs";
 import { registerSummonAutomation } from "./summons.mjs";
 
@@ -22,6 +23,7 @@ export function registerAutomationHooks() {
   registerBenignTranspositionAutomation();
   registerFocusedConjurationAutomation();
   registerGrimHarvestAutomation();
+  registerInuredToUndeathAutomation();
   registerSplitEnchantmentAutomation();
   registerSummonAutomation();
 }
