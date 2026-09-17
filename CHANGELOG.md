@@ -1,5 +1,12 @@
 # Changelog
 
+## Sin publicar
+
+- Añadidos iconos propios para Conjurador, Encantador, Nigromante y Transmutador.
+- Asignado un icono temático diferente a cada rasgo.
+- Organizado el compendio en cuatro carpetas, una por subclase.
+- Ampliada la validación para comprobar imágenes y carpetas tanto en la fuente como en el pack.
+
 ## 1.14.2 - 2026-09-17
 
 - Sustituido el compendio de mundo por el pack nativo `dnd5e-2024-wizard-schools.classes24`.

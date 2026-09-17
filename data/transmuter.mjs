@@ -1,5 +1,8 @@
 import {
+  FOLDER_IDS,
+  MODULE_ID,
   PACK_COLLECTION,
+  applyPresentation,
   featureBase,
   itemGrant,
   subclassBase,
@@ -124,5 +127,16 @@ const subclass = subclassBase({
   ]
 });
 
-export const TRANSMUTER_ITEMS = Object.freeze([savant, alchemy, stone, shape, master, subclass]);
+export const TRANSMUTER_ITEMS = applyPresentation(
+  [savant, alchemy, stone, shape, master, subclass],
+  FOLDER_IDS.transmuter,
+  {
+    [IDS.savant]: "icons/magic/symbols/elements-air-earth-fire-water.webp",
+    [IDS.alchemy]: "icons/tools/laboratory/mortar-liquid-pink.webp",
+    [IDS.stone]: "icons/commodities/gems/gem-fragments-turquoise.webp",
+    [IDS.shape]: "icons/magic/control/silhouette-grow-shrink-tan.webp",
+    [IDS.master]: "icons/magic/earth/strike-body-stone-crumble.webp",
+    [IDS.subclass]: `modules/${MODULE_ID}/assets/icons/subclasses/transmuter.webp`
+  }
+);
 export const TRANSMUTER_IDS = IDS;

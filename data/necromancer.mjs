@@ -1,5 +1,8 @@
 import {
+  FOLDER_IDS,
+  MODULE_ID,
   PACK_COLLECTION,
+  applyPresentation,
   featureBase,
   itemGrant,
   saveActivity,
@@ -96,5 +99,16 @@ const subclass = subclassBase({
   ]
 });
 
-export const NECROMANCER_ITEMS = Object.freeze([savant, harvest, thralls, inured, control, subclass]);
+export const NECROMANCER_ITEMS = applyPresentation(
+  [savant, harvest, thralls, inured, control, subclass],
+  FOLDER_IDS.necromancer,
+  {
+    [IDS.savant]: "icons/magic/death/skull-trio-badge-purple.webp",
+    [IDS.harvest]: "icons/magic/death/skeleton-skull-soul-blue.webp",
+    [IDS.thralls]: "icons/magic/death/undead-skeleton-rags-fire-green.webp",
+    [IDS.inured]: "icons/magic/death/skull-flames-white-blue.webp",
+    [IDS.control]: "icons/magic/death/hand-dirt-undead-zombie.webp",
+    [IDS.subclass]: `modules/${MODULE_ID}/assets/icons/subclasses/necromancer.webp`
+  }
+);
 export const NECROMANCER_IDS = IDS;

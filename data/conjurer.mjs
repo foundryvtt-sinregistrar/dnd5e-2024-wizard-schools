@@ -1,4 +1,12 @@
-import { CONTENT_VERSION, MODULE_ID, PACK_COLLECTION, featureBase, utilityActivity } from "./common.mjs";
+import {
+  CONTENT_VERSION,
+  FOLDER_IDS,
+  MODULE_ID,
+  PACK_COLLECTION,
+  applyPresentation,
+  featureBase,
+  utilityActivity
+} from "./common.mjs";
 
 const IDS = Object.freeze({
   subclass: "wz24Conjurer0001",
@@ -130,5 +138,16 @@ const subclass = {
   ownership: { default: 0 }
 };
 
-export const CONJURER_ITEMS = Object.freeze([savant, minor, benign, focused, durable, subclass]);
+export const CONJURER_ITEMS = applyPresentation(
+  [savant, minor, benign, focused, durable, subclass],
+  FOLDER_IDS.conjurer,
+  {
+    [IDS.savant]: "icons/sundries/documents/blueprint-recipe-magic.webp",
+    [IDS.minor]: "icons/commodities/gems/gem-fragments-turquoise.webp",
+    [IDS.benign]: "icons/skills/movement/ball-spinning-blue.webp",
+    [IDS.focused]: "icons/magic/defensive/shield-barrier-glowing-triangle-blue.webp",
+    [IDS.durable]: "icons/creatures/magical/spirit-mischief-fire-ice-blue.webp",
+    [IDS.subclass]: `modules/${MODULE_ID}/assets/icons/subclasses/conjurer.webp`
+  }
+);
 export const CONJURER_IDS = IDS;

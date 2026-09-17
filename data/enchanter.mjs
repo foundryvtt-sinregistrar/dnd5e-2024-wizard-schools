@@ -1,7 +1,9 @@
 import {
   CONTENT_VERSION,
+  FOLDER_IDS,
   MODULE_ID,
   PACK_COLLECTION,
+  applyPresentation,
   featureBase,
   itemGrant,
   saveActivity,
@@ -117,5 +119,16 @@ const subclass = subclassBase({
   ]
 });
 
-export const ENCHANTER_ITEMS = Object.freeze([savant, hypnotic, instinctive, split, memories, subclass]);
+export const ENCHANTER_ITEMS = applyPresentation(
+  [savant, hypnotic, instinctive, split, memories, subclass],
+  FOLDER_IDS.enchanter,
+  {
+    [IDS.savant]: "icons/magic/control/hypnosis-mesmerism-swirl.webp",
+    [IDS.hypnotic]: "icons/magic/control/hypnosis-mesmerism-eye.webp",
+    [IDS.instinctive]: "icons/magic/control/control-influence-crown-gold.webp",
+    [IDS.split]: "icons/magic/control/debuff-chains-orb-movement-blue.webp",
+    [IDS.memories]: "icons/sundries/documents/document-letter-blue.webp",
+    [IDS.subclass]: `modules/${MODULE_ID}/assets/icons/subclasses/enchanter.webp`
+  }
+);
 export const ENCHANTER_IDS = IDS;

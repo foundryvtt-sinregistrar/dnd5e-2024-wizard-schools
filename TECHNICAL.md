@@ -13,6 +13,8 @@ El módulo distribuye un compendio nativo de Items, `dnd5e-2024-wizard-schools.c
 - 4 Items `subclass`.
 - 20 Items `feat`.
 
+Los documentos se distribuyen en cuatro carpetas internas, una por escuela. Cada subclase usa un icono WebP propio incluido en el módulo; los rasgos emplean iconos temáticos del catálogo estándar de Foundry.
+
 Las subclases tienen `system.classIdentifier = "wizard"`, por lo que el navegador de subclases de dnd5e puede encontrarlas al resolver el Advancement de subclase del Mago 2024.
 
 Cada subclase usa `ItemGrant` en 3 / 6 / 10 / 14.
@@ -31,7 +33,7 @@ npm run build:pack
 npm run validate
 ```
 
-El validador comprueba cantidad, unicidad y formato de IDs, destinos de `ItemGrant`, UUID nativos y correspondencia entre los datos fuente y el pack.
+El validador comprueba cantidad, unicidad y formato de IDs, destinos de `ItemGrant`, UUID nativos, imágenes, carpetas y correspondencia entre los datos fuente y el pack.
 
 ## Migración desde 1.14.1
 

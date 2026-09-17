@@ -1,4 +1,12 @@
-export { MODULE_ID, CONTENT_VERSION, PACK_NAME, PACK_LABEL, PACK_COLLECTION } from "./common.mjs";
+export {
+  MODULE_ID,
+  CONTENT_VERSION,
+  PACK_NAME,
+  PACK_LABEL,
+  PACK_COLLECTION,
+  CONTENT_FOLDERS,
+  FOLDER_IDS
+} from "./common.mjs";
 import { CONJURER_ITEMS } from "./conjurer.mjs";
 import { ENCHANTER_ITEMS } from "./enchanter.mjs";
 import { NECROMANCER_ITEMS } from "./necromancer.mjs";
