@@ -1,6 +1,6 @@
 import { MODULE_ID } from "../../data/index.mjs";
 import { FEATURE_IDENTIFIERS } from "./constants.mjs";
-import { automationEnabled, findFeature } from "./utils.mjs";
+import { actorFromOrigin, automationEnabled, findFeature } from "./utils.mjs";
 
 const IMMUNITIES_FLAG = "hypnoticGazeImmunities";
 
@@ -14,8 +14,7 @@ export function isHypnoticGazeEffect(effect) {
 }
 
 async function recordImmunity(effect) {
-  const source = globalThis.fromUuidSync?.(effect.origin, { strict: false });
-  const caster = source?.actor;
+  const caster = actorFromOrigin(effect.origin);
   const target = effect.parent;
   if ( !caster?.isOwner || !target?.uuid ) return;
   const immunities = new Set(caster.getFlag(MODULE_ID, IMMUNITIES_FLAG) ?? []);

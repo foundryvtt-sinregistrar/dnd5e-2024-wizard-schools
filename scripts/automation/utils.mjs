@@ -55,6 +55,13 @@ export function classLevel(actor, identifier) {
   return Number(classItem?.system?.levels ?? 0);
 }
 
+export function actorFromOrigin(origin) {
+  const document = typeof origin === "string" ? globalThis.fromUuidSync?.(origin, { strict: false }) : origin;
+  if ( !document ) return null;
+  if ( document.documentName === "Actor" ) return document;
+  return document.actor ?? document.parent?.actor ?? (document.parent?.documentName === "Actor" ? document.parent : null);
+}
+
 export async function postAutomationMessage(actor, title, body) {
   if ( !globalThis.ChatMessage?.implementation ) return;
   await ChatMessage.implementation.create({

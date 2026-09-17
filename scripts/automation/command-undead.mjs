@@ -1,6 +1,6 @@
 import { MODULE_ID } from "../../data/index.mjs";
 import { FEATURE_IDENTIFIERS } from "./constants.mjs";
-import { automationEnabled, creatureType } from "./utils.mjs";
+import { actorFromOrigin, automationEnabled, creatureType } from "./utils.mjs";
 
 function selectedTarget() {
   return Array.from(game.user?.targets ?? [])[0]?.actor ?? null;
@@ -18,15 +18,13 @@ function controlledActors() {
 }
 
 async function enforceSingleControlledTarget(effect) {
-  const source = globalThis.fromUuidSync?.(effect.origin, { strict: false });
-  const caster = source?.actor;
+  const caster = actorFromOrigin(effect.origin);
   if ( !caster?.isOwner ) return;
   const deletions = [];
   for ( const actor of controlledActors() ) {
     for ( const existing of actor.effects.filter(isCommandUndeadEffect) ) {
       if ( existing.uuid === effect.uuid ) continue;
-      const existingSource = globalThis.fromUuidSync?.(existing.origin, { strict: false });
-      if ( existingSource?.actor?.uuid === caster.uuid ) deletions.push(existing.delete());
+      if ( actorFromOrigin(existing.origin)?.uuid === caster.uuid ) deletions.push(existing.delete());
     }
   }
   await Promise.all(deletions);

@@ -1,1 +1,5 @@
-2026/09/18-00:20:29.088 c74 Delete type=3 #1
+2026/09/18-00:20:29.809 4fa4 Recovering log #3
+2026/09/18-00:20:29.809 4fa4 Level-0 table #5: started
+2026/09/18-00:20:29.809 4fa4 Level-0 table #5: 28995 bytes OK
+2026/09/18-00:20:29.824 4fa4 Delete type=0 #3
+2026/09/18-00:20:29.824 4fa4 Delete type=3 #2

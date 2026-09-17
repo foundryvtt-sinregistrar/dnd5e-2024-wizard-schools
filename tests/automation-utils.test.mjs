@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   actorTookDamage,
+  actorFromOrigin,
   classLevel,
   concentratingOnSchool,
   creatureType,
@@ -149,4 +150,11 @@ test("Encantamiento Instintivo conserva empates entre criaturas cercanas", () =>
   ];
   const nearest = nearestCandidates(origin, candidates, new Set(), (_origin, token) => token.x);
   assert.deepEqual(nearest, candidates.slice(0, 2));
+});
+
+test("resuelve el actor desde Items y Active Effects de origen", () => {
+  const actor = { documentName: "Actor", uuid: "Actor.wizard" };
+  assert.equal(actorFromOrigin(actor), actor);
+  assert.equal(actorFromOrigin({ parent: { actor } }), actor);
+  assert.equal(actorFromOrigin({ actor }), actor);
 });
