@@ -1,6 +1,15 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { actorTookDamage, concentratingOnSchool, findFeature, isSpellFromSchool, spellLevel } from "../scripts/automation/utils.mjs";
+import {
+  actorTookDamage,
+  concentratingOnSchool,
+  creatureType,
+  findFeature,
+  isSingleCreatureActivity,
+  isSpellFromSchool,
+  spellLevel
+} from "../scripts/automation/utils.mjs";
+import { isValidGrimHarvestVictim } from "../scripts/automation/grim-harvest.mjs";
 
 test("identifica rasgos por identifier y no por nombre traducido", () => {
   const feature = { type: "feat", system: { identifier: "benign-transposition" } };
@@ -28,4 +37,19 @@ test("comprueba la escuela del conjuro mantenido", () => {
   const actor = { concentration: { items: new Set([{ type: "spell", system: { school: "con" } }]) } };
   assert.equal(concentratingOnSchool(actor, "con"), true);
   assert.equal(concentratingOnSchool(actor, "nec"), false);
+});
+
+test("Cosecha Siniestra excluye autómatas y muertos vivientes", () => {
+  assert.equal(creatureType({ system: { details: { type: { value: "undead" } } } }), "undead");
+  assert.equal(isValidGrimHarvestVictim({ system: { details: { type: { value: "construct" } } } }), false);
+  assert.equal(isValidGrimHarvestVictim({ system: { details: { type: { value: "humanoid" } } } }), true);
+});
+
+test("Duplicar Encantamiento solo acepta actividades de una criatura", () => {
+  const single = { target: { template: { type: "" }, affects: { count: "1", type: "creature" } } };
+  const area = { target: { template: { type: "sphere" }, affects: { count: "1", type: "creature" } } };
+  const multiple = { target: { template: { type: "" }, affects: { count: "3", type: "creature" } } };
+  assert.equal(isSingleCreatureActivity(single), true);
+  assert.equal(isSingleCreatureActivity(area), false);
+  assert.equal(isSingleCreatureActivity(multiple), false);
 });

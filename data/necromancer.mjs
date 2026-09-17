@@ -40,7 +40,7 @@ const harvest = featureBase({
   name: "Cosecha Siniestra",
   level: 3,
   identifier: "grim-harvest",
-  description: `<p>Una vez por turno, cuando mates al menos a una criatura con un conjuro de nivel 1 o superior, recuperas puntos de golpe iguales al doble del nivel del conjuro. Si el conjuro pertenece a la escuela de Nigromancia, recuperas tres veces su nivel.</p><p>No obtienes este beneficio al matar autómatas ni muertos vivientes.</p><section class="secret"><p><strong>Nota de Foundry.</strong> La cantidad depende del nivel y escuela del conjuro que haya causado la muerte, por lo que la curación se aplica manualmente.</p></section>`
+  description: `<p>Una vez por turno, cuando mates al menos a una criatura con un conjuro de nivel 1 o superior, recuperas puntos de golpe iguales al doble del nivel del conjuro. Si el conjuro pertenece a la escuela de Nigromancia, recuperas tres veces su nivel.</p><p>No obtienes este beneficio al matar autómatas ni muertos vivientes.</p><section class="secret"><p><strong>Automatización.</strong> Al aplicar desde el mensaje el daño de un conjuro, Foundry detecta si reduce a 0 PG a un objetivo válido, calcula la curación según el nivel efectivo y limita el beneficio a una vez por turno.</p></section>`
 });
 
 const thralls = featureBase({

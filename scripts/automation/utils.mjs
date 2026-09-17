@@ -34,6 +34,22 @@ export function concentratingOnSchool(actor, school) {
   return Array.from(actor?.concentration?.items ?? []).some(item => isSpellFromSchool(item, school));
 }
 
+export function creatureType(actor) {
+  return actor?.system?.details?.type?.value ?? "";
+}
+
+export function currentTurnKey(sourceId = "") {
+  const combat = game.combat;
+  if ( combat?.started ) return `${combat.id}:${combat.round}:${combat.turn}`;
+  return `source:${sourceId}`;
+}
+
+export function isSingleCreatureActivity(activity) {
+  const target = activity?.target;
+  if ( target?.template?.type ) return false;
+  return Number(target?.affects?.count) === 1 && ["creature", "ally", "enemy"].includes(target?.affects?.type);
+}
+
 export async function postAutomationMessage(actor, title, body) {
   if ( !globalThis.ChatMessage?.implementation ) return;
   await ChatMessage.implementation.create({

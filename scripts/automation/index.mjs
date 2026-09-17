@@ -2,6 +2,8 @@ import { MODULE_ID } from "../../data/index.mjs";
 import { registerBenignTranspositionAutomation } from "./benign-transposition.mjs";
 import { AUTOMATION_SETTING } from "./constants.mjs";
 import { registerFocusedConjurationAutomation } from "./focused-conjuration.mjs";
+import { registerGrimHarvestAutomation } from "./grim-harvest.mjs";
+import { registerSplitEnchantmentAutomation } from "./split-enchantment.mjs";
 
 export function registerAutomationSettings() {
   game.settings.register(MODULE_ID, AUTOMATION_SETTING, {
@@ -18,4 +20,6 @@ export function registerAutomationSettings() {
 export function registerAutomationHooks() {
   registerBenignTranspositionAutomation();
   registerFocusedConjurationAutomation();
+  registerGrimHarvestAutomation();
+  registerSplitEnchantmentAutomation();
 }

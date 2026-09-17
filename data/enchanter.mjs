@@ -82,7 +82,7 @@ const split = featureBase({
   name: "Duplicar Encantamiento",
   level: 10,
   identifier: "split-enchantment",
-  description: `<p>Cuando lanzas un conjuro de Encantamiento de nivel 1 o superior que tenga como objetivo a una sola criatura, puedes hacer que el conjuro también tenga como objetivo a una segunda criatura válida.</p><section class="secret"><p><strong>Nota de Foundry.</strong> Añade manualmente el segundo objetivo al resolver el conjuro; esta modificación depende del objetivo original de cada conjuro.</p></section>`
+  description: `<p>Cuando lanzas un conjuro de Encantamiento de nivel 1 o superior que tenga como objetivo a una sola criatura, puedes hacer que el conjuro también tenga como objetivo a una segunda criatura válida.</p><section class="secret"><p><strong>Automatización.</strong> Al lanzar un conjuro compatible, Foundry amplía temporalmente su actividad a dos objetivos. Selecciona ambos objetivos antes de resolver sus tiradas o efectos.</p></section>`
 });
 
 const memories = featureBase({
