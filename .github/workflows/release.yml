@@ -54,7 +54,9 @@ jobs:
 
       - name: Build module ZIPs
         run: |
-          python dev-tools/buildScripts/build_release.py --dist dist --ref "${GITHUB_SHA}"
+          # La validación abre LevelDB y actualiza sus logs. El ZIP se crea desde
+          # GITHUB_SHA, no desde esos cambios temporales del runner.
+          python dev-tools/buildScripts/build_release.py --dist dist --ref "${GITHUB_SHA}" --allow-dirty
           ls -lah dist
 
       - name: Verify expected assets
