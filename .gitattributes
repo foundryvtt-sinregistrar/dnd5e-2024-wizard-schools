@@ -1,0 +1,12 @@
+# Excluir herramientas y metadatos de desarrollo del ZIP generado con git archive.
+.gitignore           export-ignore
+.gitattributes       export-ignore
+.github/             export-ignore
+.idea/               export-ignore
+.vscode/             export-ignore
+dev-tools/           export-ignore
+dist/                export-ignore
+node_modules/         export-ignore
+package.json          export-ignore
+package-lock.json     export-ignore
+staged.txt            export-ignore

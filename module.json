@@ -2,7 +2,7 @@
   "id": "dnd5e-2024-wizard-schools",
   "title": "D&D5e 2024 - Escuelas de Mago",
   "description": "Añade Conjurador, Encantador, Nigromante y Transmutador adaptados del PHB 2014 a la progresión de subclases del Mago 2024.",
-  "version": "1.14.1",
+  "version": "1.14.2",
   "authors": [
     {
       "name": "foundryvtt-sinregistrar"
@@ -33,5 +33,33 @@
   ],
   "esmodules": [
     "scripts/main.mjs"
-  ]
+  ],
+  "packs": [
+    {
+      "name": "classes24",
+      "label": "D&D 2024 - Escuelas de Mago",
+      "path": "packs/classes24",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "dnd5e",
+      "flags": {
+        "dnd5e": {
+          "types": [
+            "subclass",
+            "feat"
+          ]
+        }
+      }
+    }
+  ],
+  "url": "https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools",
+  "manifest": "https://raw.githubusercontent.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/main/module.json",
+  "download": "https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases/latest/download/dnd5e-2024-wizard-schools.zip",
+  "bugs": "https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/issues",
+  "readme": "https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/blob/main/README.md",
+  "changelog": "https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases",
+  "license": "https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/blob/main/LICENSE"
 }
