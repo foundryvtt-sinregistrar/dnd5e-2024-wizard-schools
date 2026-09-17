@@ -24,7 +24,7 @@ Módulo para **Foundry VTT 14.363** y **dnd5e 5.2.x** que añade las cuatro espe
 - La progresión original 2014 se mueve a **3 / 6 / 10 / 14**, igual que las subclases del Mago 2024.
 - Los antiguos rasgos `Experto en X` se sustituyen por el patrón 2024: dos conjuros gratuitos de la escuela a nivel 3 y uno adicional cuando se obtiene acceso a un nuevo nivel de espacios de conjuro.
 - El resto de rasgos conserva su mecánica de 2014 salvo cuando depende de un conjuro cuya versión 2024 ha cambiado. En ese caso se usa el conjuro actual de 2024.
-- Se automatiza únicamente lo que dnd5e 5.2 puede representar de forma segura. Los comportamientos condicionados complejos incluyen una **Nota de Foundry** en la descripción.
+- Se automatiza únicamente lo que dnd5e 5.2 puede representar de forma segura. Los comportamientos condicionados complejos incluyen instrucciones de automatización o asistencia en la descripción.
 
 ## Instalación
 
@@ -62,30 +62,41 @@ La versión 1.14.2 sustituye el antiguo compendio de mundo por `dnd5e-2024-wizar
 
 ## Automatización
 
+El ajuste de mundo **Automatización de rasgos complejos** permite desactivar todos los hooks y volver a una resolución manual. Está activado por defecto y no requiere Midi-QOL, DAE ni SocketLib.
+
 ### Conjurador
 
-- Conjuración Menor: actividad de utilidad.
-- Trasposición Benigna: 1 uso, descanso largo y actividad; la recarga al lanzar un conjuro de Conjuración se hace manualmente.
-- Conjuración Concentrada e Invocaciones Duraderas: descriptivas para evitar alterar conjuros/criaturas incorrectos.
+- Conjuración Menor: actividad de utilidad y resolución narrativa del objeto.
+- Trasposición Benigna: recupera su uso al lanzar Conjuración de nivel 1 o superior.
+- Conjuración Concentrada: omite la prueba causada por daño solo para conjuros de Conjuración.
+- Invocaciones Duraderas: concede 30 PG temporales a criaturas creadas por actividades de invocación de Conjuración.
 
 ### Encantador
 
-- Mirada Hipnótica: salvación de Sabiduría con CD de conjuros.
-- Encantamiento Instintivo: reacción + salvación de Sabiduría.
-- Modificar Recuerdos: salvación de Inteligencia.
-- La inmunidad individual y la redirección de objetivos se controlan manualmente.
+- Mirada Hipnótica: efecto Hechizado/Incapacitado, velocidad 0, fin por daño e inmunidad por objetivo hasta descanso largo.
+- Encantamiento Instintivo: resuelve la salvación y propone los objetivos más cercanos para la redirección.
+- Duplicar Encantamiento: amplía temporalmente a dos objetivos los conjuros compatibles.
+- Modificar Recuerdos: calcula las horas máximas según Carisma.
 
 ### Nigromante
 
-- Habituado a la Muerte en Vida: resistencia necrótica automática.
-- Controlar Muertos Vivientes: actividad de salvación de Carisma.
-- Cosecha Siniestra y Siervos Muertos Vivientes se dejan parcialmente manuales por depender del conjuro/actor que haya provocado el efecto.
+- Cosecha Siniestra: detecta muertes producidas al aplicar daño desde un conjuro, cura y limita el beneficio a una vez por turno.
+- Siervos Muertos Vivientes: aplica PG adicionales y competencia al daño de las armas de muertos vivientes invocados por Nigromancia.
+- Habituado a la Muerte en Vida: resistencia necrótica y bloqueo de reducciones directas de PG máximos.
+- Controlar Muertos Vivientes: valida el objetivo, avisa de sus ventajas/repeticiones y mantiene un único control por nigromante.
 
 ### Transmutador
 
-- Alquimia Menor y Piedra de Transmutador: actividades de utilidad.
-- Cambiar de Forma: 1 uso recuperable en descanso corto/largo; el lanzamiento gratuito de Polimorfar se realiza manualmente.
-- Maestro Transmutador: cuatro actividades que consumen un único uso recuperable en descanso largo.
+- Alquimia Menor: concentración nativa durante una hora.
+- Piedra de Transmutador: crea un objeto transferible, sustituye la piedra anterior y gestiona su beneficio.
+- Cambiar de Forma: añade Polimorfar 2024 si falta y lo lanza sobre el mago sin gastar espacio.
+- Maestro Transmutador: exige y destruye la piedra; automatiza Panacea y Devolver la juventud y asiste las otras opciones.
+
+### Límites deliberados
+
+- Las decisiones narrativas, la percepción, los alcances variables y las inmunidades no representadas por dnd5e se validan manualmente.
+- Los efectos de salvaciones fallidas se aplican desde los botones nativos del mensaje de actividad.
+- La criatura adicional de Animar a los muertos y la forma de bestia de VD 1 o inferior se seleccionan manualmente.
 
 ## Estructura
 
@@ -99,7 +110,8 @@ dnd5e-2024-wizard-schools/
 ├─ lang/
 │  └─ es.json
 ├─ scripts/
-│  └─ main.mjs
+│  ├─ main.mjs
+│  └─ automation/
 ├─ packs/
 │  └─ classes24/
 ├─ assets/

@@ -33,12 +33,16 @@ npm run build:pack
 npm run validate
 ```
 
-El validador comprueba cantidad, unicidad y formato de IDs, destinos de `ItemGrant`, UUID nativos, imágenes, carpetas y correspondencia entre los datos fuente y el pack.
+El validador comprueba cantidad, unicidad y formato de IDs, destinos de `ItemGrant`, UUID nativos, actividades, efectos vinculados, imágenes, carpetas y correspondencia entre los datos fuente y el pack. Las utilidades de automatización tienen además pruebas con `npm test`.
 
 ## Migración desde 1.14.1
 
 El script de arranque ya no crea ni sincroniza contenido. Solo detecta `world.dnd5e-2024-wizard-schools` y pide confirmación al GM para eliminar el compendio legado, evitando resultados duplicados sin borrar datos silenciosamente.
 
-## Decisiones de automatización
+## Arquitectura de automatización
 
-No se añaden hooks globales para modificar lanzamientos de conjuros o criaturas invocadas. Esta versión prioriza compatibilidad y evita efectos colaterales. Cuando una regla no puede expresarse de forma segura mediante Activities/Active Effects, se conserva como descripción y Nota de Foundry.
+Los módulos de `scripts/automation/` se registran desde `setup` y se pueden desactivar con un ajuste de mundo. Identifican rasgos mediante `system.identifier`, nunca mediante nombres traducidos, y limitan los cambios al actor que posee el rasgo.
+
+Se usan hooks documentados por dnd5e 5.2 para actividades, daño, descansos e invocaciones. Los estados persistentes se representan mediante Active Effects o flags del módulo. No se requieren Midi-QOL, DAE ni SocketLib.
+
+La automatización no decide resultados narrativos, no modifica compendios oficiales y no fuerza objetivos cuando Foundry no proporciona un flujo seguro entre clientes. En esos casos publica una instrucción asistida y mantiene disponible la resolución manual.
