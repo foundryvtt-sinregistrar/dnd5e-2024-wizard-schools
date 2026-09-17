@@ -1,5 +1,13 @@
 # D&D5e 2024 - Escuelas de Mago
 
+![Foundry v14](https://img.shields.io/badge/Foundry-v14-green)
+![dnd5e 5.2.x](https://img.shields.io/badge/dnd5e-5.2.x-blue)
+[![Latest Release](https://img.shields.io/github/v/release/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools?label=release)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases/latest)
+[![Downloads Latest Release](https://img.shields.io/github/downloads/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/latest/total?label=descargas%20%C3%BAltima%20release)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases/latest)
+[![Downloads Total](https://img.shields.io/github/downloads/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/total?label=descargas%20totales)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases)
+
+### Este módulo no está afiliado a Wizards of the Coast.
+
 Módulo para **Foundry VTT 14.363** y **dnd5e 5.2.x** que añade las cuatro especializaciones de Mago del PHB 2014 que no aparecen como subclases en el PHB 2024.
 
 ## Subclases incluidas
