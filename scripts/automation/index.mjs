@@ -4,6 +4,7 @@ import { AUTOMATION_SETTING } from "./constants.mjs";
 import { registerFocusedConjurationAutomation } from "./focused-conjuration.mjs";
 import { registerGrimHarvestAutomation } from "./grim-harvest.mjs";
 import { registerInuredToUndeathAutomation } from "./inured-to-undeath.mjs";
+import { registerMasterTransmuterAutomation } from "./master-transmuter.mjs";
 import { registerSplitEnchantmentAutomation } from "./split-enchantment.mjs";
 import { registerSummonAutomation } from "./summons.mjs";
 import { registerTransmutersStoneAutomation } from "./transmuters-stone.mjs";
@@ -25,6 +26,7 @@ export function registerAutomationHooks() {
   registerFocusedConjurationAutomation();
   registerGrimHarvestAutomation();
   registerInuredToUndeathAutomation();
+  registerMasterTransmuterAutomation();
   registerSplitEnchantmentAutomation();
   registerSummonAutomation();
   registerTransmutersStoneAutomation();

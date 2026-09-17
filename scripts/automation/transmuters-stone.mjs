@@ -47,7 +47,7 @@ export function stoneItemData(creator, benefit) {
   };
 }
 
-function carriedStone(actor) {
+export function carriedStone(actor) {
   return actor?.items?.find(item => item.getFlag?.(MODULE_ID, STONE_FLAG)) ?? null;
 }
 

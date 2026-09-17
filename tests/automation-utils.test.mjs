@@ -12,6 +12,7 @@ import {
 } from "../scripts/automation/utils.mjs";
 import { isValidGrimHarvestVictim } from "../scripts/automation/grim-harvest.mjs";
 import { preventMaximumHpReduction } from "../scripts/automation/inured-to-undeath.mjs";
+import { isMasterTransmuterActivity } from "../scripts/automation/master-transmuter.mjs";
 import { applySummonFeatures } from "../scripts/automation/summons.mjs";
 import { stoneEffect, stoneItemData } from "../scripts/automation/transmuters-stone.mjs";
 
@@ -106,4 +107,10 @@ test("Piedra de Transmutador crea beneficios transferibles", () => {
   assert.equal(stone.effects[0].transfer, true);
   assert.equal(stone.effects[0].changes[0].value, "fire");
   assert.equal(stoneEffect("constitution").changes[0].key, "system.abilities.con.proficient");
+});
+
+test("Maestro Transmutador reconoce únicamente sus cuatro actividades", () => {
+  const item = { system: { identifier: "master-transmuter" } };
+  assert.equal(isMasterTransmuterActivity({ id: "wz24TraPanAct001", item }), true);
+  assert.equal(isMasterTransmuterActivity({ id: "otraActividad", item }), false);
 });
