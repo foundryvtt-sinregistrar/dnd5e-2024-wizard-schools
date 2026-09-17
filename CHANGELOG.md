@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.15.0 - 2026-08-29
+## 1.14.2 - 2026-09-17
 
 - Sustituido el compendio de mundo por el pack nativo `dnd5e-2024-wizard-schools.classes24`.
 - Actualizados todos los `ItemGrant` para usar UUID del módulo.

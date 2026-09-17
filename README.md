@@ -48,7 +48,7 @@ Si las subclases no aparecen en el selector, abre el navegador de compendios de 
 
 ## Actualización desde 1.14.1
 
-La versión 1.15.0 sustituye el antiguo compendio de mundo por `dnd5e-2024-wizard-schools.classes24`. Al entrar como GM, el módulo detecta el compendio legado y ofrece eliminarlo para que las subclases no aparezcan duplicadas. Los rasgos ya concedidos a personajes no se eliminan.
+La versión 1.14.2 sustituye el antiguo compendio de mundo por `dnd5e-2024-wizard-schools.classes24`. Al entrar como GM, el módulo detecta el compendio legado y ofrece eliminarlo para que las subclases no aparezcan duplicadas. Los rasgos ya concedidos a personajes no se eliminan.
 
 ## Automatización
 

@@ -26,7 +26,7 @@ Hooks.once("ready", async () => {
   const confirmed = await foundry.applications.api.DialogV2.confirm({
     window: { title: "D&D5e 2024 - Escuelas de Mago" },
     content: `<p>Se ha detectado el compendio de mundo antiguo <strong>${legacyPack.title}</strong>.</p>
-      <p>La versión 1.15.0 ya incluye el compendio nativo del módulo. Para evitar subclases duplicadas, elimina el compendio antiguo.</p>
+      <p>La versión 1.14.2 ya incluye el compendio nativo del módulo. Para evitar subclases duplicadas, elimina el compendio antiguo.</p>
       <p>Esta operación solo elimina el compendio legado; no modifica personajes ni el nuevo compendio.</p>`,
     yes: { label: "Eliminar compendio antiguo" },
     no: { label: "Conservar por ahora" },

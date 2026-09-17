@@ -1,0 +1,76 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build & Publish Release (Draft)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout tagged commit
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install validation dependencies
+        run: npm ci
+
+      - name: Validate module content
+        run: npm run validate
+
+      - name: Verify tag matches manifest version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+
+          version = json.load(open("module.json", encoding="utf-8"))["version"]
+          expected = f"v{version}"
+          actual = os.environ["RELEASE_TAG"]
+          if actual != expected:
+              raise SystemExit(f"Tag {actual!r} does not match module version {expected!r}")
+          print(f"OK: {actual} matches module.json")
+          PY
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build module ZIPs
+        run: |
+          python dev-tools/buildScripts/build_release.py --dist dist --ref "${GITHUB_SHA}"
+          ls -lah dist
+
+      - name: Verify expected assets
+        run: |
+          VERSION="$(python -c 'import json; print(json.load(open("module.json"))["version"])')"
+          test -f "dist/dnd5e-2024-wizard-schools.zip"
+          test -f "dist/dnd5e-2024-wizard-schools-${VERSION}.zip"
+          test -f "module.json"
+          echo "OK: release assets exist"
+
+      - name: Create GitHub Release (DRAFT) and upload assets
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          generate_release_notes: true
+          files: |
+            dist/dnd5e-2024-wizard-schools.zip
+            dist/dnd5e-2024-wizard-schools-*.zip
+            module.json
