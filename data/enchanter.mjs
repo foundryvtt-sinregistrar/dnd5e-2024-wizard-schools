@@ -23,7 +23,8 @@ const IDS = Object.freeze({
   adv14: "wz24EncAdv014001",
   actHypnotic: "wz24EncHypAct001",
   actInstinct: "wz24EncInsAct001",
-  actMemories: "wz24EncMemAct001"
+  actMemories: "wz24EncMemAct001",
+  effectHypnotic: "wz24HypnoEffect1"
 });
 
 const uuid = id => `Compendium.${PACK_COLLECTION}.Item.${id}`;
@@ -41,7 +42,7 @@ const hypnotic = featureBase({
   name: "Mirada Hipnótica",
   level: 3,
   identifier: "hypnotic-gaze",
-  description: `<p>Como acción, elige una criatura que puedas ver a 5 pies o menos de ti. Si puede verte u oírte, debe superar una salvación de Sabiduría contra la CD de tus conjuros de mago. Si falla, queda hechizada por ti hasta el final de tu siguiente turno; mientras dure, está incapacitada, su velocidad es 0 y resulta evidente que está bajo tu influencia.</p><p>En tus turnos posteriores puedes usar tu acción para mantener el efecto hasta el final de tu siguiente turno. El efecto termina si te alejas a más de 5 pies, si la criatura deja de verte u oírte o si recibe daño.</p><p>Cuando el efecto termina, o si supera la salvación inicial, no puedes volver a usar este rasgo contra esa criatura hasta que finalices un descanso largo.</p><section class="secret"><p><strong>Nota de Foundry.</strong> La actividad realiza la salvación. La duración, la inmunidad individual tras terminar y los estados Hechizado/Incapacitado se controlan manualmente.</p></section>`,
+  description: `<p>Como acción, elige una criatura que puedas ver a 5 pies o menos de ti. Si puede verte u oírte, debe superar una salvación de Sabiduría contra la CD de tus conjuros de mago. Si falla, queda hechizada por ti hasta el final de tu siguiente turno; mientras dure, está incapacitada, su velocidad es 0 y resulta evidente que está bajo tu influencia.</p><p>En tus turnos posteriores puedes usar tu acción para mantener el efecto hasta el final de tu siguiente turno. El efecto termina si te alejas a más de 5 pies, si la criatura deja de verte u oírte o si recibe daño.</p><p>Cuando el efecto termina, o si supera la salvación inicial, no puedes volver a usar este rasgo contra esa criatura hasta que finalices un descanso largo.</p><section class="secret"><p><strong>Automatización.</strong> Aplica desde el mensaje el efecto tras una salvación fallida. Foundry añade Hechizado, Incapacitado y velocidad 0, lo retira al recibir daño y registra la inmunidad hasta el descanso largo del encantador. Distancia, percepción y una salvación superada se comprueban manualmente.</p></section>`,
   activities: {
     [IDS.actHypnotic]: saveActivity({
       id: IDS.actHypnotic,
@@ -53,15 +54,35 @@ const hypnotic = featureBase({
       targetSpecial: "Una criatura que pueda verte u oírte",
       name: "Mirada Hipnótica"
     })
-  }
+  },
+  effects: [{
+    _id: IDS.effectHypnotic,
+    name: "Mirada Hipnótica",
+    img: "icons/magic/control/hypnosis-mesmerism-eye.webp",
+    type: "base",
+    transfer: false,
+    disabled: false,
+    duration: { rounds: 1, turns: 0, seconds: 6 },
+    statuses: ["charmed", "incapacitated"],
+    changes: [
+      { key: "system.attributes.movement.walk", mode: 3, value: "0", priority: 20 },
+      { key: "system.attributes.movement.fly", mode: 3, value: "0", priority: 20 },
+      { key: "system.attributes.movement.swim", mode: 3, value: "0", priority: 20 },
+      { key: "system.attributes.movement.climb", mode: 3, value: "0", priority: 20 },
+      { key: "system.attributes.movement.burrow", mode: 3, value: "0", priority: 20 }
+    ],
+    flags: { [MODULE_ID]: { hypnoticGaze: true } }
+  }]
 });
+
+hypnotic.system.activities[IDS.actHypnotic].effects = [{ _id: IDS.effectHypnotic }];
 
 const instinctive = featureBase({
   id: IDS.instinctive,
   name: "Encantamiento Instintivo",
   level: 6,
   identifier: "instinctive-charm",
-  description: `<p>Cuando una criatura que puedas ver a 30 pies o menos haga una tirada de ataque contra ti, puedes usar tu reacción para intentar redirigirla. Debe existir otra criatura dentro del alcance del ataque.</p><p>El atacante realiza una salvación de Sabiduría contra la CD de tus conjuros de mago. Si falla, debe elegir como objetivo a la criatura más cercana a él, sin contaros ni a ti ni al atacante. Si hay varias a la misma distancia, el atacante elige. Si supera la salvación, no puedes volver a usar este rasgo sobre ese atacante hasta que finalices un descanso largo.</p><p>Debes decidir usar el rasgo antes de saber si el ataque impacta. Una criatura inmune a ser hechizada no se ve afectada.</p><section class="secret"><p><strong>Nota de Foundry.</strong> La actividad resuelve la salvación; el cambio de objetivo y la inmunidad individual se aplican manualmente.</p></section>`,
+  description: `<p>Cuando una criatura que puedas ver a 30 pies o menos haga una tirada de ataque contra ti, puedes usar tu reacción para intentar redirigirla. Debe existir otra criatura dentro del alcance del ataque.</p><p>El atacante realiza una salvación de Sabiduría contra la CD de tus conjuros de mago. Si falla, debe elegir como objetivo a la criatura más cercana a él, sin contaros ni a ti ni al atacante. Si hay varias a la misma distancia, el atacante elige. Si supera la salvación, no puedes volver a usar este rasgo sobre ese atacante hasta que finalices un descanso largo.</p><p>Debes decidir usar el rasgo antes de saber si el ataque impacta. Una criatura inmune a ser hechizada no se ve afectada.</p><section class="secret"><p><strong>Automatización asistida.</strong> Selecciona al atacante y usa la actividad para resolver la salvación. Foundry propondrá la criatura o criaturas más cercanas; valida alcance, inmunidad y registra manualmente una salvación superada.</p></section>`,
   activities: {
     [IDS.actInstinct]: saveActivity({
       id: IDS.actInstinct,
@@ -82,7 +103,7 @@ const split = featureBase({
   name: "Duplicar Encantamiento",
   level: 10,
   identifier: "split-enchantment",
-  description: `<p>Cuando lanzas un conjuro de Encantamiento de nivel 1 o superior que tenga como objetivo a una sola criatura, puedes hacer que el conjuro también tenga como objetivo a una segunda criatura válida.</p><section class="secret"><p><strong>Nota de Foundry.</strong> Añade manualmente el segundo objetivo al resolver el conjuro; esta modificación depende del objetivo original de cada conjuro.</p></section>`
+  description: `<p>Cuando lanzas un conjuro de Encantamiento de nivel 1 o superior que tenga como objetivo a una sola criatura, puedes hacer que el conjuro también tenga como objetivo a una segunda criatura válida.</p><section class="secret"><p><strong>Automatización.</strong> Al lanzar un conjuro compatible, Foundry amplía temporalmente su actividad a dos objetivos. Selecciona ambos objetivos antes de resolver sus tiradas o efectos.</p></section>`
 });
 
 const memories = featureBase({
@@ -90,7 +111,7 @@ const memories = featureBase({
   name: "Modificar Recuerdos",
   level: 14,
   identifier: "alter-memories",
-  description: `<p>Cuando lanzas un conjuro de Encantamiento para hechizar a una o más criaturas, puedes hacer que una de ellas no sea consciente de que ha sido hechizada.</p><p>Además, una vez antes de que termine ese conjuro, puedes usar tu acción para intentar que esa criatura olvide parte del tiempo pasado bajo el efecto. Debe hacer una salvación de Inteligencia contra la CD de tus conjuros de mago. Si falla, olvida hasta 1 + tu modificador por Carisma horas, con un mínimo de 1 hora. Puedes elegir un periodo menor, pero nunca superior a la duración del conjuro de Encantamiento.</p><section class="secret"><p><strong>Nota de Foundry.</strong> La actividad permite realizar la salvación de Inteligencia; la edición narrativa de los recuerdos queda en manos del DM.</p></section>`,
+  description: `<p>Cuando lanzas un conjuro de Encantamiento para hechizar a una o más criaturas, puedes hacer que una de ellas no sea consciente de que ha sido hechizada.</p><p>Además, una vez antes de que termine ese conjuro, puedes usar tu acción para intentar que esa criatura olvide parte del tiempo pasado bajo el efecto. Debe hacer una salvación de Inteligencia contra la CD de tus conjuros de mago. Si falla, olvida hasta 1 + tu modificador por Carisma horas, con un mínimo de 1 hora. Puedes elegir un periodo menor, pero nunca superior a la duración del conjuro de Encantamiento.</p><section class="secret"><p><strong>Automatización asistida.</strong> La actividad resuelve la salvación y Foundry calcula el máximo de horas que puede olvidar el objetivo. La edición narrativa y el límite impuesto por la duración del conjuro quedan en manos del DJ.</p></section>`,
   activities: {
     [IDS.actMemories]: saveActivity({
       id: IDS.actMemories,

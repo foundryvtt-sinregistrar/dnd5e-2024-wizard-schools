@@ -44,7 +44,7 @@ const alchemy = featureBase({
   name: "Alquimia Menor",
   level: 3,
   identifier: "minor-alchemy",
-  description: `<p>Puedes alterar temporalmente un objeto no mágico hecho por completo de madera, piedra no preciosa, hierro, cobre o plata, transformándolo por entero en cualquiera de esos materiales.</p><p>Por cada 10 minutos de trabajo transformas hasta 1 pie cúbico. El objeto recupera su material original tras 1 hora o cuando pierdes la concentración, como si estuvieras concentrándote en un conjuro.</p><section class="secret"><p><strong>Adaptación 2024.</strong> Se obtiene a nivel 3 para ajustarse a la progresión moderna de subclases.</p></section>`,
+  description: `<p>Puedes alterar temporalmente un objeto no mágico hecho por completo de madera, piedra no preciosa, hierro, cobre o plata, transformándolo por entero en cualquiera de esos materiales.</p><p>Por cada 10 minutos de trabajo transformas hasta 1 pie cúbico. El objeto recupera su material original tras 1 hora o cuando pierdes la concentración, como si estuvieras concentrándote en un conjuro.</p><section class="secret"><p><strong>Adaptación 2024.</strong> Se obtiene a nivel 3 para ajustarse a la progresión moderna de subclases.</p><p><strong>Automatización.</strong> La actividad inicia una concentración nativa de una hora; la transformación concreta del objeto se describe narrativamente.</p></section>`,
   activities: {
     [IDS.actAlchemy]: utilityActivity({
       id: IDS.actAlchemy,
@@ -54,6 +54,9 @@ const alchemy = featureBase({
       rangeSpecial: "Toque; 10 minutos por pie cúbico",
       targetType: "object",
       targetSpecial: "Objeto no mágico de madera, piedra no preciosa, hierro, cobre o plata",
+      durationConcentration: true,
+      durationValue: "1",
+      durationUnits: "hour",
       name: "Alquimia Menor"
     })
   }
@@ -64,7 +67,7 @@ const stone = featureBase({
   name: "Piedra de Transmutador",
   level: 6,
   identifier: "transmuters-stone",
-  description: `<p>Tras 8 horas de trabajo creas una piedra que almacena magia de Transmutación. Puedes llevarla tú o entregarla a otra criatura. Mientras la posea, el portador obtiene uno de estos beneficios, elegido al crear la piedra:</p><ul><li>Visión en la oscuridad hasta 60 pies.</li><li>Un aumento de 10 pies a su velocidad mientras no esté cargada.</li><li>Competencia en salvaciones de Constitución.</li><li>Resistencia a ácido, frío, fuego, relámpago o trueno, elegido al crear la piedra.</li></ul><p>Cuando lances un conjuro de Transmutación de nivel 1 o superior, puedes cambiar el beneficio de la piedra si la llevas contigo. Si creas una nueva piedra, la anterior deja de existir.</p><section class="secret"><p><strong>Nota de Foundry.</strong> La creación se registra con la actividad. El beneficio elegido debe aplicarse manualmente al portador, ya que la piedra puede cambiar de dueño y de propiedad durante la aventura.</p></section>`,
+  description: `<p>Tras 8 horas de trabajo creas una piedra que almacena magia de Transmutación. Puedes llevarla tú o entregarla a otra criatura. Mientras la posea, el portador obtiene uno de estos beneficios, elegido al crear la piedra:</p><ul><li>Visión en la oscuridad hasta 60 pies.</li><li>Un aumento de 10 pies a su velocidad mientras no esté cargada.</li><li>Competencia en salvaciones de Constitución.</li><li>Resistencia a ácido, frío, fuego, relámpago o trueno, elegido al crear la piedra.</li></ul><p>Cuando lances un conjuro de Transmutación de nivel 1 o superior, puedes cambiar el beneficio de la piedra si la llevas contigo. Si creas una nueva piedra, la anterior deja de existir.</p><section class="secret"><p><strong>Automatización.</strong> La actividad crea un objeto transferible, sustituye la piedra anterior y aplica al portador el beneficio elegido. Al lanzar Transmutación puedes cambiarlo. La restricción por armadura pesada del aumento de velocidad debe comprobarse manualmente.</p></section>`,
   activities: {
     [IDS.actStone]: utilityActivity({
       id: IDS.actStone,
@@ -84,7 +87,7 @@ const shape = featureBase({
   name: "Cambiar de Forma",
   level: 10,
   identifier: "shapechanger",
-  description: `<p>Añade <strong>Polimorfar</strong> a tu libro de conjuros si todavía no lo tienes.</p><p>Puedes lanzar Polimorfar sin gastar un espacio de conjuro, pero solo sobre ti mismo y para adoptar la forma de una bestia de valor de desafío 1 o inferior. Una vez que lo lances de esta manera, no puedes volver a hacerlo hasta que finalices un descanso corto o largo. Puedes seguir lanzando Polimorfar normalmente usando espacios de conjuro.</p><section class="secret"><p><strong>Adaptación 2024.</strong> Usa las reglas actuales del conjuro Polimorfar 2024; por tanto, la forma funciona conforme a la versión 2024 del conjuro, no conforme a su texto de 2014.</p><p><strong>Nota de Foundry.</strong> La actividad consume el uso del rasgo. Lanza Polimorfar manualmente sin gastar espacio y aplícalo solo sobre el propio mago.</p></section>`,
+  description: `<p>Añade <strong>Polimorfar</strong> a tu libro de conjuros si todavía no lo tienes.</p><p>Puedes lanzar Polimorfar sin gastar un espacio de conjuro, pero solo sobre ti mismo y para adoptar la forma de una bestia de valor de desafío 1 o inferior. Una vez que lo lances de esta manera, no puedes volver a hacerlo hasta que finalices un descanso corto o largo. Puedes seguir lanzando Polimorfar normalmente usando espacios de conjuro.</p><section class="secret"><p><strong>Adaptación 2024.</strong> Usa las reglas actuales del conjuro Polimorfar 2024; por tanto, la forma funciona conforme a la versión 2024 del conjuro, no conforme a su texto de 2014.</p><p><strong>Automatización.</strong> La actividad añade Polimorfar 2024 al libro si falta y lanza su actividad sin gastar espacio sobre el propio mago. Elige manualmente una bestia de VD 1 o inferior.</p></section>`,
   uses: { max: "1", spent: 0, recovery: [{ period: "sr", type: "recoverAll" }] },
   activities: {
     [IDS.actShape]: utilityActivity({
@@ -104,7 +107,7 @@ const master = featureBase({
   name: "Maestro Transmutador",
   level: 14,
   identifier: "master-transmuter",
-  description: `<p>Como acción, puedes consumir toda la magia almacenada en tu Piedra de Transmutador para producir uno de los efectos siguientes. La piedra queda destruida y no puedes fabricar otra hasta que finalices un descanso largo.</p><p><strong>Transformación Mayor.</strong> Transforma un objeto no mágico que quepa en un cubo de 5 pies en otro objeto no mágico de tamaño parecido y masa igual o inferior. Debes manipularlo durante 10 minutos.</p><p><strong>Panacea.</strong> Una criatura que toques queda libre de maldiciones, enfermedades y venenos y recupera todos sus puntos de golpe.</p><p><strong>Devolver la Vida.</strong> Puedes lanzar Alzar a los muertos sobre una criatura que toques con la piedra sin gastar espacio de conjuro y sin necesitar tener ese conjuro en tu libro.</p><p><strong>Devolver la juventud.</strong> La edad aparente de una criatura voluntaria que toques se reduce en 3d10 años, hasta un mínimo de 13. Esto no aumenta su esperanza de vida.</p><section class="secret"><p><strong>Nota de Foundry.</strong> Las cuatro actividades consumen el mismo uso del rasgo, que se recupera tras descanso largo. El resultado concreto se aplica manualmente; para Devolver la Vida, resuelve Alzar a los muertos sin gastar espacio.</p></section>`,
+  description: `<p>Como acción, puedes consumir toda la magia almacenada en tu Piedra de Transmutador para producir uno de los efectos siguientes. La piedra queda destruida y no puedes fabricar otra hasta que finalices un descanso largo.</p><p><strong>Transformación Mayor.</strong> Transforma un objeto no mágico que quepa en un cubo de 5 pies en otro objeto no mágico de tamaño parecido y masa igual o inferior. Debes manipularlo durante 10 minutos.</p><p><strong>Panacea.</strong> Una criatura que toques queda libre de maldiciones, enfermedades y venenos y recupera todos sus puntos de golpe.</p><p><strong>Devolver la Vida.</strong> Puedes lanzar Alzar a los muertos sobre una criatura que toques con la piedra sin gastar espacio de conjuro y sin necesitar tener ese conjuro en tu libro.</p><p><strong>Devolver la juventud.</strong> La edad aparente de una criatura voluntaria que toques se reduce en 3d10 años, hasta un mínimo de 13. Esto no aumenta su esperanza de vida.</p><section class="secret"><p><strong>Automatización.</strong> Las cuatro actividades exigen y destruyen la piedra. Panacea restaura los PG y elimina Envenenado; revisa manualmente efectos narrativos. Devolver la juventud tira 3d10. Transformación Mayor y Devolver la Vida muestran instrucciones para su resolución.</p></section>`,
   uses: { max: "1", spent: 0, recovery: [{ period: "lr", type: "recoverAll" }] },
   activities: {
     [IDS.actMajor]: utilityActivity({ id: IDS.actMajor, activation: "action", rangeUnits: "touch", targetType: "object", targetSpecial: "Objeto no mágico de hasta un cubo de 5 pies", consumeItemUse: true, name: "Transformación Mayor" }),

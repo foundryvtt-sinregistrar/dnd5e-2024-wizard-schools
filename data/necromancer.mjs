@@ -22,6 +22,7 @@ const IDS = Object.freeze({
   adv10: "wz24NecAdv010001",
   adv14: "wz24NecAdv014001",
   effectNecrotic: "wz24NecResist001",
+  effectControl: "wz24ControlEff01",
   actControl: "wz24NecCtlAct001"
 });
 
@@ -40,7 +41,7 @@ const harvest = featureBase({
   name: "Cosecha Siniestra",
   level: 3,
   identifier: "grim-harvest",
-  description: `<p>Una vez por turno, cuando mates al menos a una criatura con un conjuro de nivel 1 o superior, recuperas puntos de golpe iguales al doble del nivel del conjuro. Si el conjuro pertenece a la escuela de Nigromancia, recuperas tres veces su nivel.</p><p>No obtienes este beneficio al matar autómatas ni muertos vivientes.</p><section class="secret"><p><strong>Nota de Foundry.</strong> La cantidad depende del nivel y escuela del conjuro que haya causado la muerte, por lo que la curación se aplica manualmente.</p></section>`
+  description: `<p>Una vez por turno, cuando mates al menos a una criatura con un conjuro de nivel 1 o superior, recuperas puntos de golpe iguales al doble del nivel del conjuro. Si el conjuro pertenece a la escuela de Nigromancia, recuperas tres veces su nivel.</p><p>No obtienes este beneficio al matar autómatas ni muertos vivientes.</p><section class="secret"><p><strong>Automatización.</strong> Al aplicar desde el mensaje el daño de un conjuro, Foundry detecta si reduce a 0 PG a un objetivo válido, calcula la curación según el nivel efectivo y limita el beneficio a una vez por turno.</p></section>`
 });
 
 const thralls = featureBase({
@@ -48,7 +49,7 @@ const thralls = featureBase({
   name: "Siervos Muertos Vivientes",
   level: 6,
   identifier: "undead-thralls",
-  description: `<p>Añade <strong>Animar a los muertos</strong> a tu libro de conjuros si todavía no lo tienes.</p><p>Cuando lanzas Animar a los muertos, puedes elegir como objetivo un cadáver o una pila de huesos adicional, creando un zombi o esqueleto adicional según corresponda.</p><p>Además, cada muerto viviente que crees mediante un conjuro de Nigromancia obtiene estos beneficios:</p><ul><li>Sus puntos de golpe máximos aumentan en una cantidad igual a tu nivel de mago.</li><li>Suma tu bonificador por competencia a sus tiradas de daño con armas.</li></ul><section class="secret"><p><strong>Adaptación 2024.</strong> El conjuro Animar a los muertos de 2024 ya incrementa en dos criaturas por cada nivel de espacio por encima de 3; este rasgo mantiene además su criatura adicional propia. Añade el conjuro al libro manualmente para evitar duplicar o sustituir una copia ya existente.</p><p><strong>Nota de Foundry.</strong> Los bonificadores de PG y daño deben aplicarse a los actores invocados. No se automatizan en esta versión para no modificar criaturas que procedan de otras fuentes.</p></section>`
+  description: `<p>Añade <strong>Animar a los muertos</strong> a tu libro de conjuros si todavía no lo tienes.</p><p>Cuando lanzas Animar a los muertos, puedes elegir como objetivo un cadáver o una pila de huesos adicional, creando un zombi o esqueleto adicional según corresponda.</p><p>Además, cada muerto viviente que crees mediante un conjuro de Nigromancia obtiene estos beneficios:</p><ul><li>Sus puntos de golpe máximos aumentan en una cantidad igual a tu nivel de mago.</li><li>Suma tu bonificador por competencia a sus tiradas de daño con armas.</li></ul><section class="secret"><p><strong>Adaptación 2024.</strong> El conjuro Animar a los muertos de 2024 ya incrementa en dos criaturas por cada nivel de espacio por encima de 3; este rasgo mantiene además su criatura adicional propia. Añade el conjuro al libro manualmente para evitar duplicar o sustituir una copia ya existente.</p><p><strong>Automatización.</strong> Los muertos vivientes creados mediante una actividad de invocación de un conjuro de Nigromancia reciben automáticamente los PG adicionales y el bonificador al daño de sus armas. El objetivo adicional de Animar a los muertos se gestiona manualmente.</p></section>`
 });
 
 const inured = featureBase({
@@ -56,7 +57,7 @@ const inured = featureBase({
   name: "Habituado a la Muerte en Vida",
   level: 10,
   identifier: "inured-to-undeath",
-  description: `<p>Obtienes resistencia al daño necrótico y tus puntos de golpe máximos no pueden ser reducidos.</p><section class="secret"><p><strong>Nota de Foundry.</strong> La resistencia necrótica se aplica automáticamente mediante un Active Effect. La inmunidad a la reducción de PG máximos se mantiene como regla descriptiva porque no existe una modificación genérica segura para todos los efectos que puedan reducirlos.</p></section>`,
+  description: `<p>Obtienes resistencia al daño necrótico y tus puntos de golpe máximos no pueden ser reducidos.</p><section class="secret"><p><strong>Automatización.</strong> La resistencia necrótica se aplica mediante un Active Effect y las actualizaciones que intenten reducir directamente tus PG máximos se bloquean.</p></section>`,
   effects: [
     transferableEffect({
       id: IDS.effectNecrotic,
@@ -71,7 +72,7 @@ const control = featureBase({
   name: "Controlar Muertos Vivientes",
   level: 14,
   identifier: "command-undead",
-  description: `<p>Como acción, elige un muerto viviente que puedas ver a 60 pies o menos. Debe hacer una salvación de Carisma contra la CD de tus conjuros de mago. Si la supera, no puedes volver a usar este rasgo sobre esa criatura. Si falla, se vuelve amistosa hacia ti y obedece tus órdenes hasta que vuelvas a usar este rasgo.</p><p>Si el objetivo tiene Inteligencia 8 o superior, tiene ventaja en la salvación. Si tiene Inteligencia 12 o superior y falla, puede repetir la salvación al final de cada hora hasta tener éxito y liberarse.</p><section class="secret"><p><strong>Nota de Foundry.</strong> La actividad resuelve la salvación inicial. La ventaja por Inteligencia, el control prolongado y las repeticiones horarias se gestionan manualmente.</p></section>`,
+  description: `<p>Como acción, elige un muerto viviente que puedas ver a 60 pies o menos. Debe hacer una salvación de Carisma contra la CD de tus conjuros de mago. Si la supera, no puedes volver a usar este rasgo sobre esa criatura. Si falla, se vuelve amistosa hacia ti y obedece tus órdenes hasta que vuelvas a usar este rasgo.</p><p>Si el objetivo tiene Inteligencia 8 o superior, tiene ventaja en la salvación. Si tiene Inteligencia 12 o superior y falla, puede repetir la salvación al final de cada hora hasta tener éxito y liberarse.</p><section class="secret"><p><strong>Automatización.</strong> Foundry valida que el objetivo sea un muerto viviente, avisa de la ventaja y las repeticiones por Inteligencia y ofrece un efecto de control tras el fallo. Aplicarlo elimina el control anterior del mismo nigromante.</p></section>`,
   activities: {
     [IDS.actControl]: saveActivity({
       id: IDS.actControl,
@@ -83,8 +84,22 @@ const control = featureBase({
       targetSpecial: "Un muerto viviente visible",
       name: "Controlar Muerto Viviente"
     })
-  }
+  },
+  effects: [{
+    _id: IDS.effectControl,
+    name: "Controlado por Maestro Nigromante",
+    img: "icons/magic/death/hand-dirt-undead-zombie.webp",
+    type: "base",
+    transfer: false,
+    disabled: false,
+    duration: { seconds: null, rounds: null, turns: null },
+    statuses: [],
+    changes: [],
+    flags: { [MODULE_ID]: { commandUndead: true } }
+  }]
 });
+
+control.system.activities[IDS.actControl].effects = [{ _id: IDS.effectControl }];
 
 const subclass = subclassBase({
   id: IDS.subclass,
