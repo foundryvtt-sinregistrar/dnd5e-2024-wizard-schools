@@ -19,6 +19,17 @@ for ( const item of CONTENT_ITEMS ) {
   if ( !item.img ) errors.push(`${item.name}: no tiene imagen.`);
   if ( !folderIds.has(item.folder) ) errors.push(`${item.name}: carpeta inexistente (${item.folder}).`);
 
+  const effectIds = new Set((item.effects ?? []).map(effect => effect._id));
+  for ( const effect of item.effects ?? [] ) {
+    if ( !/^[A-Za-z0-9]{16}$/.test(effect._id) ) errors.push(`${item.name}: ID de efecto no válido (${effect._id}).`);
+  }
+  for ( const activity of Object.values(item.system?.activities ?? {}) ) {
+    if ( !/^[A-Za-z0-9]{16}$/.test(activity._id) ) errors.push(`${item.name}: ID de actividad no válido (${activity._id}).`);
+    for ( const applied of activity.effects ?? [] ) {
+      if ( !effectIds.has(applied._id) ) errors.push(`${item.name}: la actividad ${activity._id} enlaza un efecto inexistente (${applied._id}).`);
+    }
+  }
+
   if ( item.img?.startsWith(`modules/${MODULE_ID}/`) ) {
     const relativePath = item.img.slice(`modules/${MODULE_ID}/`.length);
     const localPath = fileURLToPath(new URL(`../../${relativePath}`, import.meta.url));
@@ -33,6 +44,14 @@ for ( const item of CONTENT_ITEMS ) {
       if ( !ids.has(targetId) ) errors.push(`${item.name}: ItemGrant apunta a un ID inexistente (${targetId}).`);
     }
   }
+}
+
+const minorAlchemy = CONTENT_ITEMS.find(item => item.system?.identifier === "minor-alchemy");
+const minorAlchemyActivity = Object.values(minorAlchemy?.system?.activities ?? {})[0];
+if ( !minorAlchemyActivity?.duration?.concentration
+  || minorAlchemyActivity.duration.value !== "1"
+  || minorAlchemyActivity.duration.units !== "hour" ) {
+  errors.push("Alquimia Menor no está configurada como concentración de una hora.");
 }
 
 const packPath = fileURLToPath(new URL("../../packs/classes24", import.meta.url));

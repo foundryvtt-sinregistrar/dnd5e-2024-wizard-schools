@@ -1,9 +1,11 @@
 import { MODULE_ID } from "../data/index.mjs";
+import { registerAutomationHooks, registerAutomationSettings } from "./automation/index.mjs";
 
 const LEGACY_PACK_COLLECTION = "world.dnd5e-2024-wizard-schools";
 const LEGACY_MIGRATION_SETTING = "legacyPackMigration";
 
 Hooks.once("init", () => {
+  registerAutomationSettings();
   game.settings.register(MODULE_ID, LEGACY_MIGRATION_SETTING, {
     name: "Estado de la migración del compendio legado",
     scope: "world",
@@ -11,6 +13,10 @@ Hooks.once("init", () => {
     type: String,
     default: ""
   });
+});
+
+Hooks.once("setup", () => {
+  if ( game.system?.id === "dnd5e" ) registerAutomationHooks();
 });
 
 Hooks.once("ready", async () => {

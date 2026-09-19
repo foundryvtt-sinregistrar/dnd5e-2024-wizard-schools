@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.14.4 - 2026-09-20
+
+- Añadida infraestructura opcional de automatización avanzada sin dependencias externas.
+- Automatizados los usos, recargas, concentración, curación, invocaciones y PG máximos compatibles.
+- Añadidos estados persistentes para Mirada Hipnótica y Controlar Muertos Vivientes.
+- Añadida la Piedra de Transmutador transferible y la gestión de Maestro Transmutador.
+- Integrado Cambiar de Forma con Polimorfar 2024 sin consumir espacio de conjuro.
+- Añadida asistencia para Encantamiento Instintivo y Modificar Recuerdos.
+- Ampliadas las pruebas y la validación de actividades y efectos vinculados.
+
 ## 1.14.3 - 2026-09-17
 
 - Añadidos iconos propios para Conjurador, Encantador, Nigromante y Transmutador.

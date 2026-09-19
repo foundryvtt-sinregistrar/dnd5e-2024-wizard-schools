@@ -1,5 +1,5 @@
 export const MODULE_ID = "dnd5e-2024-wizard-schools";
-export const CONTENT_VERSION = "1.14.3-presentation.1";
+export const CONTENT_VERSION = "1.14.4-automation.1";
 export const PACK_NAME = "classes24";
 export const PACK_LABEL = "D&D 2024 - Escuelas de Mago";
 export const PACK_COLLECTION = `${MODULE_ID}.${PACK_NAME}`;
@@ -68,6 +68,9 @@ export function utilityActivity({
   targetType = "self",
   targetSpecial = "",
   consumeItemUse = false,
+  durationConcentration = false,
+  durationValue = "",
+  durationUnits = "",
   name = ""
 }) {
   return {
@@ -80,7 +83,13 @@ export function utilityActivity({
       spellSlot: true
     },
     description: { chatFlavor: "" },
-    duration: { concentration: false, value: "", units: "", special: "", override: false },
+    duration: {
+      concentration: durationConcentration,
+      value: durationValue,
+      units: durationUnits,
+      special: "",
+      override: false
+    },
     effects: [],
     range: { units: rangeUnits, special: rangeSpecial, override: false },
     target: {
