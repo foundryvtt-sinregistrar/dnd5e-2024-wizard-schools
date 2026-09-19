@@ -1,6 +1,6 @@
 # Changelog
 
-## Próxima versión
+## 1.14.4 - 2026-09-20
 
 - Añadida infraestructura opcional de automatización avanzada sin dependencias externas.
 - Automatizados los usos, recargas, concentración, curación, invocaciones y PG máximos compatibles.
