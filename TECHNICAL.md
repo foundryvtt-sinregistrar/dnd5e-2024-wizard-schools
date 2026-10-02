@@ -2,8 +2,8 @@
 
 ## Objetivo
 
-- Foundry VTT 14.363
-- dnd5e 5.2.x
+- Foundry VTT 14.368 (mínimo 14.367)
+- dnd5e 6.0.3
 - Reglas de clase: 2024
 
 ## Arquitectura
@@ -43,6 +43,6 @@ El script de arranque ya no crea ni sincroniza contenido. Solo detecta `world.dn
 
 Los módulos de `scripts/automation/` se registran desde `setup` y se pueden desactivar con un ajuste de mundo. Identifican rasgos mediante `system.identifier`, nunca mediante nombres traducidos, y limitan los cambios al actor que posee el rasgo.
 
-Se usan hooks documentados por dnd5e 5.2 para actividades, daño, descansos e invocaciones. Los estados persistentes se representan mediante Active Effects o flags del módulo. No se requieren Midi-QOL, DAE ni SocketLib.
+Se usan hooks documentados por dnd5e 6.0.3 para actividades, daño, descansos e invocaciones. Los estados persistentes se representan mediante Active Effects o flags del módulo. No se requieren Midi-QOL, DAE ni SocketLib.
 
 La automatización no decide resultados narrativos, no modifica compendios oficiales y no fuerza objetivos cuando Foundry no proporciona un flujo seguro entre clientes. En esos casos publica una instrucción asistida y mantiene disponible la resolución manual.

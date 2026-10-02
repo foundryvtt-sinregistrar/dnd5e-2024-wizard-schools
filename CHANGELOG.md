@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.14.5 - 2026-10-02
+
+- Actualizada la compatibilidad declarada y los metadatos del pack para Foundry VTT 14.368 (mínimo 14.367) y dnd5e 6.0.3.
+- Auditados los 24 Items, sus actividades, Active Effects, ItemGrant, UUID y campos `system.source`; se conservan todos los IDs existentes.
+- Verificados los once hooks de automatización contra dnd5e 6.0.3, incluido el flujo de Polimorfar desde `dnd5e.spells24`.
+
 ## 1.14.4 - 2026-09-20
 
 - Añadida infraestructura opcional de automatización avanzada sin dependencias externas.

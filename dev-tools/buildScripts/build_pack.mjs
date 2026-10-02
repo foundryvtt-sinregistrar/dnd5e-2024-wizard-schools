@@ -11,9 +11,9 @@ const operations = [];
 const stats = {
   compendiumSource: null,
   duplicateSource: null,
-  coreVersion: "14.363",
+  coreVersion: "14.368",
   systemId: "dnd5e",
-  systemVersion: "5.2.0",
+  systemVersion: "6.0.3",
   createdTime: Date.UTC(2026, 8, 21),
   modifiedTime: Date.UTC(2026, 8, 21),
   lastModifiedBy: null,

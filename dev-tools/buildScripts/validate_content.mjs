@@ -1,6 +1,7 @@
 import { ClassicLevel } from "classic-level";
 import { access } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
+import { isDeepStrictEqual } from "node:util";
 import { CONTENT_FOLDERS, CONTENT_ITEMS, MODULE_ID, PACK_COLLECTION } from "../../data/index.mjs";
 
 const expectedPrefix = `Compendium.${PACK_COLLECTION}.Item.`;
@@ -18,6 +19,9 @@ for ( const item of CONTENT_ITEMS ) {
   if ( !["feat", "subclass"].includes(item.type) ) errors.push(`${item.name}: tipo inesperado (${item.type}).`);
   if ( !item.img ) errors.push(`${item.name}: no tiene imagen.`);
   if ( !folderIds.has(item.folder) ) errors.push(`${item.name}: carpeta inexistente (${item.folder}).`);
+  if ( !item.system?.source || item.system.source.rules !== "2024" ) {
+    errors.push(`${item.name}: system.source no declara reglas 2024.`);
+  }
 
   const effectIds = new Set((item.effects ?? []).map(effect => effect._id));
   for ( const effect of item.effects ?? [] ) {
@@ -59,6 +63,7 @@ const db = new ClassicLevel(packPath, { valueEncoding: "json", readOnly: true })
 const packedIds = new Set();
 const packedItems = new Map();
 const packedFolderIds = new Set();
+const packedEffects = new Map();
 for await (const [key, value] of db.iterator({ gte: "!items!", lt: "!items!~" })) {
   const id = String(key).slice("!items!".length);
   packedIds.add(id);
@@ -66,6 +71,9 @@ for await (const [key, value] of db.iterator({ gte: "!items!", lt: "!items!~" })
 }
 for await (const [key] of db.iterator({ gte: "!folders!", lt: "!folders!~" })) {
   packedFolderIds.add(String(key).slice("!folders!".length));
+}
+for await (const [key, value] of db.iterator({ gte: "!items.effects!", lt: "!items.effects!~" })) {
+  packedEffects.set(String(key).slice("!items.effects!".length), value);
 }
 await db.close();
 
@@ -75,6 +83,30 @@ for ( const id of packedIds ) if ( !ids.has(id) ) errors.push(`El pack contiene 
 for ( const [id, item] of packedItems ) {
   if ( !item.img ) errors.push(`El Item empaquetado ${id} no tiene imagen.`);
   if ( !folderIds.has(item.folder) ) errors.push(`El Item empaquetado ${id} no está en una carpeta válida.`);
+
+  const source = CONTENT_ITEMS.find(entry => entry._id === id);
+  const expected = structuredClone(source);
+  const effects = expected.effects ?? [];
+  expected.effects = effects.map(effect => effect._id);
+  expected.folder ??= null;
+  expected.sort ??= 0;
+  const actual = structuredClone(item);
+  delete actual._stats;
+  if ( !isDeepStrictEqual(actual, expected) ) errors.push(`El Item empaquetado ${id} no coincide íntegramente con data/.`);
+
+  for ( const effect of effects ) {
+    const packedEffect = structuredClone(packedEffects.get(`${id}.${effect._id}`));
+    if ( !packedEffect ) {
+      errors.push(`Falta el Active Effect ${effect._id} de ${id} en el pack.`);
+      continue;
+    }
+    delete packedEffect._stats;
+    const expectedEffect = structuredClone(effect);
+    expectedEffect.folder ??= null;
+    if ( !isDeepStrictEqual(packedEffect, expectedEffect) ) {
+      errors.push(`El Active Effect ${effect._id} de ${id} no coincide con data/.`);
+    }
+  }
 }
 if ( packedFolderIds.size !== 4 ) errors.push(`El pack contiene ${packedFolderIds.size} carpetas, no 4.`);
 for ( const id of folderIds ) if ( !packedFolderIds.has(id) ) errors.push(`Falta la carpeta ${id} en el pack.`);
@@ -84,5 +116,5 @@ if ( errors.length ) {
   console.error(errors.join("\n"));
   process.exitCode = 1;
 } else {
-  console.log("Validación correcta: 24 Items con imagen, 4 carpetas, ItemGrant resueltos y pack sincronizado.");
+  console.log("Validación correcta: 24 Items, actividades, Active Effects, system.source, ItemGrant y pack sincronizados.");
 }
