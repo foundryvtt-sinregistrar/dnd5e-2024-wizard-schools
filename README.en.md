@@ -10,7 +10,7 @@
 
 This module adds the Conjurer, Enchanter, Necromancer, and Transmuter Wizard subclasses. It requires Foundry VTT 14.367+, dnd5e 6.0.3, and the official Dungeons & Dragons Player's Handbook (PHB 2024) module, which supplies the 2024 Wizard class and spell content.
 
-English is the canonical language of this compendium. Install a separate translation module for another language; for Spanish, use `translate-dnd5e-2024-wizard-schools-es` together with Babele.
+English is the canonical language of this compendium. Install a separate translation module for another language; for Spanish, use `translate-dnd5e-wizard-schools-2024-es` together with Babele.
 
 The compendium contains 24 documents in four folders. Subclasses use stable ItemGrant links at levels 3, 6, 10, and 14. IDs, UUIDs, formulas, and automation identifiers are stable across the language migration, so existing actor items remain valid.
 

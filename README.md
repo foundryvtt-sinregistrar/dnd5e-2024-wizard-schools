@@ -23,7 +23,7 @@ The base module is English and includes a native compendium, **D&D 2024 - Wizard
 
 ## Translations
 
-For Spanish, install `translate-dnd5e-2024-wizard-schools-es`, Babele, and this module. Set Foundry's language to Spanish and reload the world. Translation modules translate visible compendium fields by stable ID; they do not duplicate documents.
+For Spanish, install `translate-dnd5e-wizard-schools-2024-es`, Babele, and this module. Set Foundry's language to Spanish and reload the world. Translation modules translate visible compendium fields by stable ID; they do not duplicate documents.
 
 For another language, use the Spanish project as a template. See [LOCALIZATION.md](LOCALIZATION.md) for the compatibility contract and coverage validator.
 

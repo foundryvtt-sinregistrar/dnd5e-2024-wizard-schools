@@ -4,7 +4,7 @@
 
 `dnd5e-2024-wizard-schools` 2.14.0 is the English canonical module. It keeps the existing 24 Item IDs, UUIDs, activity IDs, Active Effect IDs, folder IDs, advancement IDs, formulas, and automation identifiers.
 
-`translate-dnd5e-2024-wizard-schools-es` 1.0.0 is a separate Spanish Babele translation module. It requires the base module, dnd5e 6.0.3, the PHB 2024 module, and Babele 2.9.1. It translates folders, document names and descriptions, source text, activities, effects, and advancement titles by ID.
+`translate-dnd5e-wizard-schools-2024-es` 1.0.0 is a separate Spanish Babele translation module. It requires the base module, dnd5e 6.0.3, the PHB 2024 module, and Babele 2.9.1. It translates folders, document names and descriptions, source text, activities, effects, and advancement titles by ID.
 
 ## Compatibility matrix
 

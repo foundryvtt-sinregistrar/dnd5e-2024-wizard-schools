@@ -3,7 +3,7 @@
 ## 2.14.0 - 2026-10-03
 
 - English is now the canonical compendium language.
-- Moved the Spanish compendium translation to `translate-dnd5e-2024-wizard-schools-es` with Babele.
+- Moved the Spanish compendium translation to `translate-dnd5e-wizard-schools-2024-es` with Babele.
 - Preserved all Item, activity, effect, folder, advancement, and UUID identifiers.
 - Added cross-module localization coverage validation and a future-language template.
 - Declared the official `dnd-players-handbook` (PHB 2024) module as a required dependency.
