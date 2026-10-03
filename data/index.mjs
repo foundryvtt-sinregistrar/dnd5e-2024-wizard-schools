@@ -11,8 +11,9 @@ import { CONJURER_ITEMS } from "./conjurer.mjs";
 import { ENCHANTER_ITEMS } from "./enchanter.mjs";
 import { NECROMANCER_ITEMS } from "./necromancer.mjs";
 import { TRANSMUTER_ITEMS } from "./transmuter.mjs";
+import { applyEnglishPresentation } from "./english.mjs";
 
-export const CONTENT_ITEMS = Object.freeze([
+export const CONTENT_ITEMS = applyEnglishPresentation([
   ...CONJURER_ITEMS,
   ...ENCHANTER_ITEMS,
   ...NECROMANCER_ITEMS,

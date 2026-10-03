@@ -1,7 +1,7 @@
 export const MODULE_ID = "dnd5e-2024-wizard-schools";
 export const CONTENT_VERSION = "1.14.4-automation.1";
 export const PACK_NAME = "classes24";
-export const PACK_LABEL = "D&D 2024 - Escuelas de Mago";
+export const PACK_LABEL = "D&D 2024 - Wizard Schools";
 export const PACK_COLLECTION = `${MODULE_ID}.${PACK_NAME}`;
 
 export const FOLDER_IDS = Object.freeze({
@@ -12,10 +12,10 @@ export const FOLDER_IDS = Object.freeze({
 });
 
 export const CONTENT_FOLDERS = Object.freeze([
-  { _id: FOLDER_IDS.conjurer, name: "Conjurador", color: "#2386c8", sort: 100000 },
-  { _id: FOLDER_IDS.enchanter, name: "Encantador", color: "#b13ca4", sort: 200000 },
-  { _id: FOLDER_IDS.necromancer, name: "Nigromante", color: "#29926f", sort: 300000 },
-  { _id: FOLDER_IDS.transmuter, name: "Transmutador", color: "#c78226", sort: 400000 }
+  { _id: FOLDER_IDS.conjurer, name: "Conjurer", color: "#2386c8", sort: 100000 },
+  { _id: FOLDER_IDS.enchanter, name: "Enchanter", color: "#b13ca4", sort: 200000 },
+  { _id: FOLDER_IDS.necromancer, name: "Necromancer", color: "#29926f", sort: 300000 },
+  { _id: FOLDER_IDS.transmuter, name: "Transmuter", color: "#c78226", sort: 400000 }
 ]);
 
 export function applyPresentation(items, folder, images) {
@@ -170,7 +170,7 @@ export function subclassBase({ id, name, identifier, description, advancements }
   };
 }
 
-export function itemGrant({ id, level, items, title = "Rasgos de subclase" }) {
+export function itemGrant({ id, level, items, title = "Subclass Features" }) {
   return {
     _id: id,
     type: "ItemGrant",

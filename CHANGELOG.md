@@ -1,8 +1,12 @@
 # Changelog
 
-## Unreleased
+## 1.15.0 - 2026-10-03
 
-- Declarado el módulo oficial `dnd-players-handbook` (PHB 2024) como requisito: aporta la clase Mago 2024 y los conjuros que usan las subclases.
+- English is now the canonical compendium language.
+- Moved the Spanish compendium translation to `translate-dnd5e-2024-wizard-schools-es` with Babele.
+- Preserved all Item, activity, effect, folder, advancement, and UUID identifiers.
+- Added cross-module localization coverage validation and a future-language template.
+- Declared the official `dnd-players-handbook` (PHB 2024) module as a required dependency.
 
 ## 1.14.5 - 2026-10-02
 
