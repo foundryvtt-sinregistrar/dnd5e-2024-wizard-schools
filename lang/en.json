@@ -1,8 +1,8 @@
 {
   "DND5E2024WIZSCHOOLS": {
-    "packLabel": "D&D 2024 - Wizard Schools",
+    "packLabel": "D&D 2024 SubClasses - Wizard Schools",
     "legacyMigration": "Legacy compendium migration status",
     "automationName": "Complex feature automation",
-    "automationHint": "Automate compatible features from the four Wizard schools. Disable this to resolve them manually."
+    "automationHint": "Automate compatible features from the four SubClasses Wizard schools. Disable this to resolve them manually."
   }
 }

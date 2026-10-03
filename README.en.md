@@ -1,4 +1,4 @@
-# D&D 2024 - Wizard Schools
+# D&D 2024 SubClasses - Wizard Schools
 
 ![Foundry v14.368](https://img.shields.io/badge/Foundry-v14.368-green)
 ![dnd5e 6.0.3](https://img.shields.io/badge/dnd5e-6.0.3-blue)![PHB 2024 required](https://img.shields.io/badge/PHB_2024-required-orange)

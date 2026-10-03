@@ -1,7 +1,7 @@
 export const MODULE_ID = "dnd5e-2024-wizard-schools";
 export const CONTENT_VERSION = "1.14.4-automation.1";
 export const PACK_NAME = "classes24";
-export const PACK_LABEL = "D&D 2024 - Wizard Schools";
+export const PACK_LABEL = "D&D 2024 SubClasses - Wizard Schools";
 export const PACK_COLLECTION = `${MODULE_ID}.${PACK_NAME}`;
 
 export const FOLDER_IDS = Object.freeze({
