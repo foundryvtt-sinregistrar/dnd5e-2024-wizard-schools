@@ -11,7 +11,7 @@
 
 ### Este módulo no está afiliado a Wizards of the Coast.
 
-Módulo comprobado con **Foundry VTT 14.368**, **dnd5e 6.0.3** y PHB 2024. Añade las cuatro especializaciones de Mago del PHB 2014 que no aparecen como subclases en el PHB 2024. Requiere Foundry 14.367 o posterior.
+Módulo comprobado con **Foundry VTT 14.368**, **dnd5e 6.0.3** y el módulo oficial **Dungeons & Dragons Player's Handbook (PHB 2024)**. Este último es un requisito: proporciona la clase Mago 2024 y los conjuros necesarios. Añade las cuatro especializaciones de Mago del PHB 2014 que no aparecen como subclases en el PHB 2024. Requiere Foundry 14.367 o posterior.
 
 ## Subclases incluidas
 

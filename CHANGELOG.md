@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Declarado el módulo oficial `dnd-players-handbook` (PHB 2024) como requisito: aporta la clase Mago 2024 y los conjuros que usan las subclases.
+
 ## 1.14.5 - 2026-10-02
 
 - Actualizada la compatibilidad declarada y los metadatos del pack para Foundry VTT 14.368 (mínimo 14.367) y dnd5e 6.0.3.
