@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.15.0 - 2026-10-03
+## 2.14.0 - 2026-10-03
 
 - English is now the canonical compendium language.
 - Moved the Spanish compendium translation to `translate-dnd5e-2024-wizard-schools-es` with Babele.

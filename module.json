@@ -2,7 +2,7 @@
   "id": "dnd5e-2024-wizard-schools",
   "title": "D&D 2024 - Wizard Schools",
   "description": "Adds Conjurer, Enchanter, Necromancer, and Transmuter subclasses adapted from the 2014 PHB to 2024 Wizard progression.",
-  "version": "1.15.0",
+  "version": "2.14.0",
   "authors": [
     {
       "name": "foundryvtt-sinregistrar"
