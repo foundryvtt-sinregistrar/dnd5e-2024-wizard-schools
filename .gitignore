@@ -138,3 +138,10 @@ staged.txt
 dist
 node_modules/
 .tmp-npm-cache/
+
+
+# Fuentes e informes locales
+/dev-tools/export/data/*
+!/dev-tools/export/data/.gitkeep
+/dev-tools/export/_data/
+/dev-tools/_[Ii]nformes/
