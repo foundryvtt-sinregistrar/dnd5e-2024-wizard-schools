@@ -1,4 +1,19 @@
-# Excluir herramientas y metadatos de desarrollo del ZIP generado con git archive.
+# Normalize text files to LF in Git.
+* text=auto
+*.json text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.sh text eol=lf
+*.template text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+.editorconfig text eol=lf
+
+# Exclude tooling and development metadata from git archives.
 .gitignore           export-ignore
 .gitattributes       export-ignore
 .github/             export-ignore
