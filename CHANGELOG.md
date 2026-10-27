@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.14.1 - 2026-10-27
+
+- Verified compatibility with Foundry VTT 14.369 and D&D5e 6.0.6.
+
 ## 2.14.0 - 2026-10-03
 
 - English is now the canonical compendium language.
