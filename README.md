@@ -1,32 +1,63 @@
-# D&D 2024 SubClasses - Wizard Schools
+# D&D 2024 — Escuelas de magia de mago
 
-![Foundry v14.368](https://img.shields.io/badge/Foundry-v14.368-green)
-![dnd5e 6.0.3](https://img.shields.io/badge/dnd5e-6.0.3-blue)![PHB 2024 required](https://img.shields.io/badge/PHB_2024-required-orange)
+**Español** | [English](README.en.md)
 
-[![Latest Release](https://img.shields.io/github/v/release/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools?label=release)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases/latest)
-[![Downloads Latest Release](https://img.shields.io/github/downloads/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/latest/total?label=descargas%20%C3%BAltima%20release)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases/latest)
+![Foundry VTT](https://img.shields.io/badge/Foundry_VTT-14.367%2B-green) ![dnd5e](https://img.shields.io/badge/dnd5e-6.0.3%2B-blue)
+[![Última versión](https://img.shields.io/github/v/release/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools?label=versi%C3%B3n)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases/latest)
 
-[![Downloads Total](https://img.shields.io/github/downloads/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/total?label=descargas%20totales)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases)
+Añade las subclases de mago Conjurador, Encantador, Nigromante y Transmutador a la progresión de mago de 2024.
 
-Requires Foundry VTT 14.367 or newer, dnd5e 6.0.3, and the official Dungeons & Dragons Player's Handbook (PHB 2024) module. The PHB provides the 2024 Wizard class and spell content used by these subclasses.
+## Estado
 
-## Included subclasses
+Compatible con Foundry VTT 14.367 o posterior y dnd5e 6.0.3 o posterior. La versión 2.14.1 se verificó con Foundry VTT 14.369.
 
-| Subclass | Level 3 | Level 6 | Level 10 | Level 14 |
+## Requisitos
+
+- Foundry VTT 14.367 o posterior.
+- El sistema dnd5e 6.0.3 o posterior.
+- El módulo oficial *Dungeons & Dragons Player's Handbook* (PHB 2024), que aporta la clase de mago y los conjuros de 2024.
+
+## Instalación
+
+Instala desde el navegador de complementos de Foundry:
+
+```text
+https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases/latest/download/module.json
+```
+
+Activa el módulo junto con dnd5e y el PHB 2024.
+
+## Activación y uso
+
+El compendio nativo **D&D 2024 - Wizard Schools** contiene 24 documentos en cuatro carpetas. Añade una subclase y sus rasgos a un mago desde el compendio.
+
+| Subclase | Nivel 3 | Nivel 6 | Nivel 10 | Nivel 14 |
 | --- | --- | --- | --- | --- |
-| Conjurer | Conjuration Savant, Minor Conjuration | Benign Transposition | Focused Conjuration | Durable Summons |
-| Enchanter | Enchantment Savant, Hypnotic Gaze | Instinctive Charm | Split Enchantment | Alter Memories |
-| Necromancer | Necromancy Savant, Grim Harvest | Undead Thralls | Inured to Undeath | Command Undead |
-| Transmuter | Transmutation Savant, Minor Alchemy | Transmuter's Stone | Shapechanger | Master Transmuter |
+| Conjurador | Conjuration Savant, Minor Conjuration | Benign Transposition | Focused Conjuration | Durable Summons |
+| Encantador | Enchantment Savant, Hypnotic Gaze | Instinctive Charm | Split Enchantment | Alter Memories |
+| Nigromante | Necromancy Savant, Grim Harvest | Undead Thralls | Inured to Undeath | Command Undead |
+| Transmutador | Transmutation Savant, Minor Alchemy | Transmuter's Stone | Shapechanger | Master Transmuter |
 
-The base module is English and includes a native compendium, **D&D 2024 - Wizard Schools**, with 24 documents in four folders. All Item, UUID, activity, Active Effect, and advancement IDs are stable.
+## Actualización
 
-## Translations
+Desde la serie 1.14.x, actualiza a 2.14.0 o posterior y, si procede, instala el módulo de traducción. Los IDs, UUID, fórmulas, automatizaciones y enlaces ItemGrant permanecen estables; las copias importadas no se sincronizan automáticamente.
 
-For Spanish, install `translate-dnd5e-wizard-schools-2024-es`, Babele, and this module. Set Foundry's language to Spanish and reload the world. Translation modules translate visible compendium fields by stable ID; they do not duplicate documents.
+## Contenido incluido
 
-For another language, use the Spanish project as a template. See [LOCALIZATION.md](LOCALIZATION.md) for the compatibility contract and coverage validator.
+Las cuatro escuelas incluyen avances en los niveles 3, 6, 10 y 14. El módulo base está en inglés; para español instala `translate-dnd5e-wizard-schools-2024-es` junto con Babele.
 
-## Updating from 1.14.x
+## Limitaciones
 
-Install version 2.14.0 or later, then optionally install a translation module. Existing items on actors keep working because their IDs and UUIDs are unchanged. Imported copies are not automatically synchronized by Foundry.
+Foundry no sincroniza las copias ya importadas en actores con el compendio actualizado.
+
+## Soporte y contribuciones
+
+Comunica incidencias en el [repositorio del módulo](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/issues).
+
+## Desarrollo
+
+Consulta [LOCALIZATION.md](LOCALIZATION.md) para el contrato de localización y su validador de cobertura. Las traducciones deben conservar todos los IDs de documentos, actividades, efectos y avances.
+
+## Licencia y créditos
+
+Consulta [LICENSE](LICENSE) y [CHANGELOG.md](CHANGELOG.md).

@@ -1,10 +1,16 @@
 # Changelog
 
-## 2.14.1 - 2026-10-27
+## [Unreleased]
+
+## [2.14.1] - 2026-10-27
+
+### Changed
 
 - Verified compatibility with Foundry VTT 14.369 and D&D5e 6.0.6.
 
-## 2.14.0 - 2026-10-03
+## [2.14.0] - 2026-10-03
+
+### Changed
 
 - English is now the canonical compendium language.
 - Moved the Spanish compendium translation to `translate-dnd5e-wizard-schools-2024-es` with Babele.
@@ -12,13 +18,17 @@
 - Added cross-module localization coverage validation and a future-language template.
 - Declared the official `dnd-players-handbook` (PHB 2024) module as a required dependency.
 
-## 1.14.5 - 2026-10-02
+## [1.14.5] - 2026-10-02
+
+### Changed
 
 - Actualizada la compatibilidad declarada y los metadatos del pack para Foundry VTT 14.368 (mínimo 14.367) y dnd5e 6.0.3.
 - Auditados los 24 Items, sus actividades, Active Effects, ItemGrant, UUID y campos `system.source`; se conservan todos los IDs existentes.
 - Verificados los once hooks de automatización contra dnd5e 6.0.3, incluido el flujo de Polimorfar desde `dnd5e.spells24`.
 
-## 1.14.4 - 2026-09-20
+## [1.14.4] - 2026-09-20
+
+### Added
 
 - Añadida infraestructura opcional de automatización avanzada sin dependencias externas.
 - Automatizados los usos, recargas, concentración, curación, invocaciones y PG máximos compatibles.
@@ -28,14 +38,18 @@
 - Añadida asistencia para Encantamiento Instintivo y Modificar Recuerdos.
 - Ampliadas las pruebas y la validación de actividades y efectos vinculados.
 
-## 1.14.3 - 2026-09-17
+## [1.14.3] - 2026-09-17
+
+### Added
 
 - Añadidos iconos propios para Conjurador, Encantador, Nigromante y Transmutador.
 - Asignado un icono temático diferente a cada rasgo.
 - Organizado el compendio en cuatro carpetas, una por subclase.
 - Ampliada la validación para comprobar imágenes y carpetas tanto en la fuente como en el pack.
 
-## 1.14.2 - 2026-09-17
+## [1.14.2] - 2026-09-17
+
+### Changed
 
 - Sustituido el compendio de mundo por el pack nativo `dnd5e-2024-wizard-schools.classes24`.
 - Actualizados todos los `ItemGrant` para usar UUID del módulo.
@@ -44,7 +58,9 @@
 - Añadida una migración confirmada por el GM para retirar el compendio legado y evitar duplicados.
 - Añadidos scripts reproducibles de generación y validación del pack.
 
-## 1.14.1 - 2026-08-29
+## [1.14.1] - 2026-08-29
+
+### Added
 
 - Añadidos **Encantador**, **Nigromante** y **Transmutador**.
 - El módulo incluye ahora las cuatro escuelas ausentes del PHB 2024: Conjurador, Encantador, Nigromante y Transmutador.
@@ -54,7 +70,9 @@
 - Cambiar de Forma y Maestro Transmutador incluyen usos y recuperaciones de descanso.
 - Se mantienen IDs estables del Conjurador de la versión 1.14.0.
 
-## 1.14.0 - 2026-08-28
+## [1.14.0] - 2026-08-28
+
+### Added
 
 - Primera versión de prueba para Foundry VTT 14.363 + dnd5e 5.2.x.
 - Añadido Conjurador 2024.
