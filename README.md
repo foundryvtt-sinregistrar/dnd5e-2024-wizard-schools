@@ -2,8 +2,12 @@
 
 **Español** | [English](README.en.md)
 
-![Foundry VTT](https://img.shields.io/badge/Foundry_VTT-14.367%2B-green) ![dnd5e](https://img.shields.io/badge/dnd5e-6.0.3%2B-blue)
+![Foundry minimum](https://img.shields.io/badge/Foundry_min-14.367%2B-green)
+![Foundry verified](https://img.shields.io/badge/Foundry_verified-14.369-blue)
+![dnd5e minimum](https://img.shields.io/badge/dnd5e_min-6.0.3%2B-blue)
+![dnd5e verified](https://img.shields.io/badge/dnd5e_verified-6.0.6-blue)
 [![Última versión](https://img.shields.io/github/v/release/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools?label=versi%C3%B3n)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases/latest)
+[![Descargas totales](https://img.shields.io/github/downloads/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/total?label=descargas%20totales)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases)
 
 Añade las subclases de mago Conjurador, Encantador, Nigromante y Transmutador a la progresión de mago de 2024.
 

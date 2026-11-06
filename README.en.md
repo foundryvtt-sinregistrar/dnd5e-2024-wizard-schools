@@ -2,8 +2,12 @@
 
 [Español](README.md) | **English**
 
-![Foundry VTT](https://img.shields.io/badge/Foundry_VTT-14.367%2B-green) ![dnd5e](https://img.shields.io/badge/dnd5e-6.0.3%2B-blue)
+![Foundry minimum](https://img.shields.io/badge/Foundry_min-14.367%2B-green)
+![Foundry verified](https://img.shields.io/badge/Foundry_verified-14.369-blue)
+![dnd5e minimum](https://img.shields.io/badge/dnd5e_min-6.0.3%2B-blue)
+![dnd5e verified](https://img.shields.io/badge/dnd5e_verified-6.0.6-blue)
 [![Latest release](https://img.shields.io/github/v/release/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools?label=release)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases/latest)
+[![Total downloads](https://img.shields.io/github/downloads/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/total?label=total%20downloads)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases)
 
 Adds the Conjurer, Enchanter, Necromancer, and Transmuter Wizard subclasses to the 2024 Wizard progression.
 
