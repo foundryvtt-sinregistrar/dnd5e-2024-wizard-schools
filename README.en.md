@@ -9,6 +9,10 @@
 [![Latest release](https://img.shields.io/github/v/release/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools?label=release)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases/latest)
 [![Total downloads](https://img.shields.io/github/downloads/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/total?label=total%20downloads)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases)
 
+<p align="center">
+  <img src="docs/foundry/assets/banner-wizard-schools.webp" alt="D&D5e Wizard Schools: four classic Wizard subclasses">
+</p>
+
 Adds the Conjurer, Enchanter, Necromancer, and Transmuter Wizard subclasses to the 2024 Wizard progression.
 
 ## Status
@@ -61,6 +65,20 @@ Report issues in the [module repository](https://github.com/foundryvtt-sinregist
 ## Development
 
 See [LOCALIZATION.md](LOCALIZATION.md) for the localization contract and coverage validator. Translations must retain every document, activity, effect, and advancement ID.
+
+## Screenshots
+
+The four schools included in the module:
+
+![Conjurer, Enchanter, Necromancer, and Transmuter](docs/foundry/assets/four-wizard-schools.webp)
+
+Choosing a Wizard school when the character reaches level 3, with the base compendium in English:
+
+![Level 3 Wizard school selector in English](https://raw.githubusercontent.com/foundryvtt-sinregistrar/translate-dnd5e-wizard-schools-2024-es/main/docs/foundry/assets/screenshots/Wizard-level3-choise-school-en.png)
+
+With the [Wizard Schools Spanish Translation](https://github.com/foundryvtt-sinregistrar/translate-dnd5e-wizard-schools-2024-es) module and Babele enabled, the same selector is displayed in Spanish:
+
+[![Selector de escuela de mago de nivel 3 en español](https://raw.githubusercontent.com/foundryvtt-sinregistrar/translate-dnd5e-wizard-schools-2024-es/main/docs/foundry/assets/screenshots/Wizard-level3-choise-school-es.png)](https://github.com/foundryvtt-sinregistrar/translate-dnd5e-wizard-schools-2024-es)
 
 ## License and credits
 

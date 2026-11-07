@@ -9,6 +9,10 @@
 [![Última versión](https://img.shields.io/github/v/release/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools?label=versi%C3%B3n)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases/latest)
 [![Descargas totales](https://img.shields.io/github/downloads/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/total?label=descargas%20totales)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases)
 
+<p align="center">
+  <img src="docs/foundry/assets/banner-wizard-schools.webp" alt="D&D5e Wizard Schools: cuatro subclases clásicas de mago">
+</p>
+
 Añade las subclases de mago Conjurador, Encantador, Nigromante y Transmutador a la progresión de mago de 2024.
 
 ## Estado
@@ -61,6 +65,20 @@ Comunica incidencias en el [repositorio del módulo](https://github.com/foundryv
 ## Desarrollo
 
 Consulta [LOCALIZATION.md](LOCALIZATION.md) para el contrato de localización y su validador de cobertura. Las traducciones deben conservar todos los IDs de documentos, actividades, efectos y avances.
+
+## Capturas de pantalla
+
+Las cuatro escuelas incluidas en el módulo:
+
+![Conjurador, Encantador, Nigromante y Transmutador](docs/foundry/assets/four-wizard-schools.webp)
+
+Selección de una escuela de mago al alcanzar el nivel 3, con el compendio base en inglés:
+
+![Level 3 Wizard school selector in English](https://raw.githubusercontent.com/foundryvtt-sinregistrar/translate-dnd5e-wizard-schools-2024-es/main/docs/foundry/assets/screenshots/Wizard-level3-choise-school-en.png)
+
+Con la [traducción española de Wizard Schools](https://github.com/foundryvtt-sinregistrar/translate-dnd5e-wizard-schools-2024-es) y Babele activados, esa misma selección se muestra en español:
+
+[![Selector de escuela de mago de nivel 3 en español](https://raw.githubusercontent.com/foundryvtt-sinregistrar/translate-dnd5e-wizard-schools-2024-es/main/docs/foundry/assets/screenshots/Wizard-level3-choise-school-es.png)](https://github.com/foundryvtt-sinregistrar/translate-dnd5e-wizard-schools-2024-es)
 
 ## Licencia y créditos
 
