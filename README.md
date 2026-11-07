@@ -2,6 +2,10 @@
 
 **Español** | [English](README.en.md)
 
+<p align="center">
+  <img src="docs/foundry/assets/banner-wizard-schools.webp" alt="D&D5e Wizard Schools: cuatro subclases clásicas de mago">
+</p>
+
 ![Foundry minimum](https://img.shields.io/badge/Foundry_min-14.367%2B-green)
 ![Foundry verified](https://img.shields.io/badge/Foundry_verified-14.370-blue)
 ![dnd5e minimum](https://img.shields.io/badge/dnd5e_min-6.0.3%2B-blue)
@@ -9,9 +13,6 @@
 [![Última versión](https://img.shields.io/github/v/release/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools?label=versi%C3%B3n)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases/latest)
 [![Descargas totales](https://img.shields.io/github/downloads/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/total?label=descargas%20totales)](https://github.com/foundryvtt-sinregistrar/dnd5e-2024-wizard-schools/releases)
 
-<p align="center">
-  <img src="docs/foundry/assets/banner-wizard-schools.webp" alt="D&D5e Wizard Schools: cuatro subclases clásicas de mago">
-</p>
 
 Añade las subclases de mago Conjurador, Encantador, Nigromante y Transmutador a la progresión de mago de 2024.
 
