@@ -41,9 +41,7 @@
       "path": "lang/en.json"
     }
   ],
-  "esmodules": [
-    "scripts/main.mjs"
-  ],
+  "esmodules": ["scripts/main.mjs"],
   "packs": [
     {
       "name": "classes24",
@@ -57,10 +55,7 @@
       "system": "dnd5e",
       "flags": {
         "dnd5e": {
-          "types": [
-            "subclass",
-            "feat"
-          ]
+          "types": ["subclass", "feat"]
         }
       }
     }
