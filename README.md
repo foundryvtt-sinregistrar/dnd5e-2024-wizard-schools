@@ -18,7 +18,7 @@ Añade las subclases de mago Conjurador, Encantador, Nigromante y Transmutador a
 
 ## Estado
 
-Compatible con Foundry VTT 14.367 o posterior y dnd5e 6.0.3 o posterior. La versión 2.14.1 se verificó con Foundry VTT 14.370.
+Compatible con Foundry VTT 14.367 o posterior y dnd5e 6.0.3 o posterior. Versión actual: 2.14.2. Su contenido se verificó como 2.14.1 con Foundry VTT 14.370.
 
 ## Requisitos
 

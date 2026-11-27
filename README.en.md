@@ -17,7 +17,7 @@ Adds the Conjurer, Enchanter, Necromancer, and Transmuter Wizard subclasses to t
 
 ## Status
 
-Compatible with Foundry VTT 14.367 or newer and dnd5e 6.0.3 or newer. Version 2.14.1 was verified with Foundry VTT 14.370.
+Compatible with Foundry VTT 14.367 or newer and dnd5e 6.0.3 or newer. Current version: 2.14.2. Its content was verified as 2.14.1 with Foundry VTT 14.370.
 
 ## Requirements
 
