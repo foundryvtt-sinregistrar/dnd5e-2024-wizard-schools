@@ -25,3 +25,4 @@ node_modules/         export-ignore
 package.json          export-ignore
 package-lock.json     export-ignore
 staged.txt            export-ignore
+tests/                export-ignore
